@@ -12,7 +12,9 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.model.LoginModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.LoginPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.LoginView;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
+import com.example.administrator.rxjavaandretrofitsimple.rxbus.RxBus;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.ConfigUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.db.UserDao;
 
 /**
@@ -70,8 +72,10 @@ public class LoginActivity extends Activity implements LoginView,View.OnClickLis
                     AbToastUtil.showToast(getActivity(),"已经登陆过了");
                 }
                 break;
-            case R.id.btn_delete_user:
+            case R.id.btn_delete_user://删除用户信息
                 userDao.removeUserEntity();
+                RxBus.get().post(ConfigUtil.USERINFO, ConfigUtil.USEREXIT);//发送清除用户信息的监听通知RxBus处理
+                finish();
                 break;
         }
     }
@@ -80,7 +84,9 @@ public class LoginActivity extends Activity implements LoginView,View.OnClickLis
     public void updateView(LoginEntity loginEntity) {
         if (loginEntity != null) {
             if(loginEntity.getResultcode() == 200){
+                RxBus.get().post(ConfigUtil.USERINFO, ConfigUtil.USERLOGIN);//发送登陆的监听通知RxBus处理
                 AbToastUtil.showToast(getActivity(),"登陆成功");
+                finish();
             }else{
                 AbToastUtil.showToast(getActivity(),loginEntity.getReason());
             }

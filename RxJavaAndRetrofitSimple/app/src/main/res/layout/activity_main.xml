@@ -10,11 +10,19 @@
     android:orientation="vertical"
     tools:context="com.example.administrator.rxjavaandretrofitsimple.MainActivity">
 
+    <TextView
+        android:id="@+id/tv_login_info"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="25sp"
+        android:text="您还未登录"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btn_save_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="保存用户"/>
+        android:text="模拟登陆"/>
 
     <Button
         android:id="@+id/btn_question"

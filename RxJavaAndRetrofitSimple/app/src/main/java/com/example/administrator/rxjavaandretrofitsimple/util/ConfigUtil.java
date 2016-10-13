@@ -16,4 +16,20 @@ public class ConfigUtil {
      * 驾考题库
      */
     public static String BASE_URL_DRIVING = "http://api2.juheapi.com/";
+
+
+    /**
+     * 用户信息
+     */
+    public static String USERINFO = "USERINFO";
+    /**
+     * 登陆成功
+     */
+    public static String USERLOGIN = "USERLOGIN";
+
+    /**
+     * 用户退出
+     */
+    public static String USEREXIT = "USEREXIT";
+
 }
