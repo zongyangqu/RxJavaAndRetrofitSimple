@@ -10,8 +10,7 @@ import java.util.List;
 import rx.Subscriber;
 
 /**
- * 类名称：
- * 类描述：
+ * 类描述：业务处理基类
  * 创建人：quzongyang
  * 创建时间：2016/10/11. 19:55
  * 版本：

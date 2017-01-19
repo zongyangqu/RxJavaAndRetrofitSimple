@@ -15,7 +15,7 @@ public class ConfigUtil {
     /**
      * 驾考题库
      */
-    public static String BASE_URL_DRIVING = "http://api2.juheapi.com/";
+    public static String BASE_URL_DRIVING = "http://v.juhe.cn/";
 
 
     /**

@@ -2,11 +2,13 @@ package com.example.administrator.rxjavaandretrofitsimple.util;
 
 import com.example.administrator.rxjavaandretrofitsimple.bean.DrivingQuestionEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.LoginEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsBean;
 
 import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -36,4 +38,11 @@ public interface ClientService {
     @FormUrlEncoded
     @POST("jztk/query")
     Observable<DrivingQuestionEntity> getDrivingQuestion(@FieldMap Map<String,String> params);
+    /**
+     *
+     * 获取新闻列表
+     */
+    @GET("toutiao/index?type=top&key=761fc4e2bffe6ed2997b3626a642c3e0")
+    Observable<NewsBean> getNews();
+
 }

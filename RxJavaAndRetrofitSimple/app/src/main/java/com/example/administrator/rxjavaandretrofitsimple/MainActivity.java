@@ -1,6 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Observable<String> mUserLoginObserver;
     private UserDao userDao;
     private LoginEntity.UserBean userBean;
+
+    /**
+     * 入口
+     * @param activity
+     */
+    public static void startAction(Activity activity){
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in,
+                R.anim.fade_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
