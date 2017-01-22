@@ -15,6 +15,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.NewsPrese
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.NewsView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseFragment;
+import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 
 /**
  * 作者：quzongyang
@@ -78,6 +79,6 @@ public class NewsFragment extends BaseFragment implements NewsView{
 
     @Override
     public void showError(String errMsg) {
-
+        AbToastUtil.showToast(getActivity(),errMsg);
     }
 }

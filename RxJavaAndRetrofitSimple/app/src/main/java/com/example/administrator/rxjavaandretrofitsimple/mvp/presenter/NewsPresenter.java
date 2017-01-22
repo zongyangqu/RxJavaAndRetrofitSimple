@@ -1,5 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
+import com.example.administrator.rxjavaandretrofitsimple.api.RxNetworkResponseObserver;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.NewsModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
@@ -27,23 +28,28 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
      * top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
      */
     public void getNews(String type) {
+        getView().startLoadingView();
         Observable<NewsEntity> codeEntityObservable = getModel().getNews(type);
-        Subscriber<NewsEntity> subscriber = new Subscriber<NewsEntity>() {
+        RxNetworkResponseObserver<NewsEntity> subscriber = new RxNetworkResponseObserver<NewsEntity>() {
             @Override
-            public void onCompleted() {
-
+            public void onBeforeResponseOperation() {
+                super.onBeforeResponseOperation();
+                getView().hideLoadingView();
             }
 
             @Override
-            public void onError(Throwable e) {
-                getView().hideLoadingView();
-                getView().showError("网络异常");
+            public void onResponseFail(String msg) {
+                getView().showError(msg);
             }
 
             @Override
-            public void onNext(NewsEntity result) {
-                getView().hideLoadingView();
+            public void onResponse(NewsEntity result) {
                 getView().updateView(result);
+            }
+
+            @Override
+            public void onResponseStatusFail(String msgCode, String msg) {
+                getView().showError(msg);
             }
         };
         codeEntityObservable.doOnNext(new Action1<NewsEntity>() {
