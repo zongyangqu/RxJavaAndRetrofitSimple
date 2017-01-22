@@ -114,15 +114,6 @@ public abstract class BaseFragment extends Fragment {
     public void showLoadingDialog(String title) {
         if (mListener != null)
             mListener.showLoginDialog(title);
-//        if (null != this && !this.isFinishing()) {
-//            if (!TextUtils.isEmpty(title)) {
-//                abLoadingDialog.setTitle(title);
-//            } else {
-//                abLoadingDialog.setTitle(getString(R.string.loding_dialog));
-//            }
-//            abLoadingDialog.show();
-//        }
-//        _loadingDialog.showWithStatus(title, SVProgressHUD.SVProgressHUDMaskType.None);
     }
 
     /**
@@ -137,31 +128,6 @@ public abstract class BaseFragment extends Fragment {
      * 初始化正在加载进度条
      */
     public void initLoadingDialog() {
-        //abLoadingDialog = new AbLoadingDialog(getActivity());
-        //abLoadingDialog.setCancelable(false);
-//        abLoadingDialog.setCancelable(true);
-//        abLoadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-//            public boolean onKey(DialogInterface dialog,
-//                                 int keyCode, KeyEvent event) {
-//                if (keyCode == KeyEvent.KEYCODE_BACK) {
-//                    dialog.dismiss();
-//                    //此处把dialog dismiss掉，然后把本身的activity finish掉
-//                    getActivity().finish();
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
-//        });
-//        _loadingDialog = new SVProgressHUD(getActivity());
-//        _loadingDialog.setOnDismissListener(new OnDismissListener() {
-//            @Override
-//            public void onDismiss(SVProgressHUD hud) {
-//                if (getCurrentPersenter() != null) {
-//                    getCurrentPersenter().unsubcrib();
-//                }
-//            }
-//        });
     }
 
     /**

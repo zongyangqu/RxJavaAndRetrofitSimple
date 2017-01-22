@@ -21,6 +21,21 @@ public class NetParams {
         return params;
     }
 
+    /**
+     * 获取微信精选
+     * @param pno
+     * @param ps
+     * @param key
+     * @return
+     */
+    public Map<String, String> getWeChat(String pno, String ps,String key) {
+        Map<String, String> params = new HashMap<>();
+        params.put("pno", key);
+        params.put("ps", ps);
+        params.put("key",key);
+        return params;
+    }
+
 
     /**
      * 查询IP地址（模拟登陆）

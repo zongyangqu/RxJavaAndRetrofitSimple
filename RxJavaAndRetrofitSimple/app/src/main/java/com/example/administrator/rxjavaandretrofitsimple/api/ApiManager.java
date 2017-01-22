@@ -20,9 +20,9 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * 作者：quzongyang
- * <p>
+ *
  * 创建时间：2017/1/19
- * <p>
+ *
  * 类描述：网络请求管理类
  */
 

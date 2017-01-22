@@ -29,4 +29,9 @@ public class HostType {
      * 新闻详情html图片的host
      */
     public static final int NEWS_DETAIL_HTML_PHOTO = 3;
+
+    /**
+     * 聚合数据接口
+     */
+    public static final int JUHE_DATE_NET_INTERFACE = 4;
 }

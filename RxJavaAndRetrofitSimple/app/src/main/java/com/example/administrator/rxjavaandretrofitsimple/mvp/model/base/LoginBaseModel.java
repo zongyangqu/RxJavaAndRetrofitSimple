@@ -1,5 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.model.base;
 
+import com.example.administrator.rxjavaandretrofitsimple.api.ApiService;
 import com.example.administrator.rxjavaandretrofitsimple.util.ClientService;
 import com.example.administrator.rxjavaandretrofitsimple.util.ConfigUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.conventer.FastJsonConverterFactory;
@@ -18,14 +19,14 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  * 版本：
  */
 public class LoginBaseModel extends BaseModel{
-    private ClientService clientService;
+    /*private ApiService clientService;
     protected LoginBaseModel(){
         OkHttpClient client=new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).readTimeout(30,TimeUnit.SECONDS).writeTimeout(30,TimeUnit.SECONDS).build();
         Retrofit retrofit=new Retrofit.Builder().baseUrl(ConfigUtil.BASE_URL_LOGIN).addConverterFactory(FastJsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
         clientService = retrofit.create(ClientService.class);
     }
 
-    public ClientService getClientService() {
+    public ApiService getClientService() {
         return clientService;
-    }
+    }*/
 }

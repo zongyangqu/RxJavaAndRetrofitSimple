@@ -27,7 +27,7 @@ public class DrivingQuestionPresenter extends BasePresenter<DrivingQuestionView,
      * @param model 驾照类型，可选择参数为：c1,c2,a1,a2,b1,b2；当subject=4时可省略
      */
     public void getDrivingQuestion(String key,String subject,String model) {
-        Observable<DrivingQuestionEntity> codeEntityObservable = getModel().getQuestion(key, subject, model);
+        /*Observable<DrivingQuestionEntity> codeEntityObservable = getModel().getQuestion(key, subject, model);
         Subscriber<DrivingQuestionEntity> subscriber = new Subscriber<DrivingQuestionEntity>() {
             @Override
             public void onCompleted() {
@@ -56,6 +56,6 @@ public class DrivingQuestionPresenter extends BasePresenter<DrivingQuestionView,
             public void call() {
                 getView().startLoadingView();
             }
-        }).subscribe(subscriber);
+        }).subscribe(subscriber);*/
     }
 }

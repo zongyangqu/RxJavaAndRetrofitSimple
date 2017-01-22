@@ -10,7 +10,7 @@ import java.util.List;
  * 类描述：
  */
 
-public class NewsBean {
+public class NewsEntity {
 
     /**
      * reason : 成功的返回

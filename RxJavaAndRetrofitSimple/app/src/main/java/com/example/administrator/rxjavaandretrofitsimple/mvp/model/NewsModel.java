@@ -1,10 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.model;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsBean;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.base.BaseModel;
-
-import java.util.List;
-import java.util.Map;
 
 import rx.Observable;
 
@@ -24,7 +21,7 @@ public class NewsModel extends BaseModel{
      * @param type
      * @return
      */
-    public Observable<NewsBean> getNews(String type) {
+    public Observable<NewsEntity> getNews(String type) {
         //Map<String, String> params = NetParams.getInstance().WaitGrabSearch(user_id,position_x, position_y,OrderIDList);
         return getClientService().getNews();
     }

@@ -13,7 +13,7 @@ public class ApiConstants {
     public static final String NETEAST_HOST = "http://c.m.163.com/";
     public static final String END_URL = "-20.html";
     public static final String ENDDETAIL_URL = "/full.html";
-
+    public static final String JUHE_NET_INTERFACE = "http://v.juhe.cn/";
     // 新闻详情
     public static final String NEWS_DETAIL = NETEAST_HOST + "nc/article/";
 
@@ -165,6 +165,9 @@ public class ApiConstants {
                 break;
             case HostType.NEWS_DETAIL_HTML_PHOTO:
                 host = "http://kaku.com/";
+                break;
+            case HostType.JUHE_DATE_NET_INTERFACE:
+                host = JUHE_NET_INTERFACE;
                 break;
             default:
                 host = "";

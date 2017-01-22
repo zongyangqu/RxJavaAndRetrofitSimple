@@ -20,8 +20,8 @@ public class LoginModel extends LoginBaseModel {
     /**
      * 模拟登陆
      */
-    public Observable<LoginEntity> login(String key, String ip){
+    /*public Observable<LoginEntity> login(String key, String ip){
         Map<String, String> params = NetParams.getInstance().login(key, ip);
         return getClientService().searchIP(params);
-    }
+    }*/
 }

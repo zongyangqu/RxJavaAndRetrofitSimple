@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 public class LoginPresenter extends BasePresenter<BaseView<LoginEntity>, LoginModel> {
 
     public void login(String key,String ip){
-        Observable<LoginEntity> codeEntityObservable = getModel().login(key,ip);
+        /*Observable<LoginEntity> codeEntityObservable = getModel().login(key,ip);
         Subscriber<LoginEntity> subscriber = new Subscriber<LoginEntity>() {
             @Override
             public void onCompleted() {
@@ -42,9 +42,9 @@ public class LoginPresenter extends BasePresenter<BaseView<LoginEntity>, LoginMo
                 getView().updateView(result);
             }
         };
-        /**
+        *//**
          * 切换到IO线程保存用户信息到数据库
-         */
+         *//*
         codeEntityObservable.observeOn(Schedulers.io()).doOnNext(new Action1<LoginEntity>() {
             @Override
             public void call(LoginEntity resutl) {
@@ -60,7 +60,7 @@ public class LoginPresenter extends BasePresenter<BaseView<LoginEntity>, LoginMo
                 getView().startLoadingView();
             }
         }).subscribe(subscriber);
-        addSubscrib(subscriber);
+        addSubscrib(subscriber);*/
     }
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_wechat_img"
+        android:layout_width="640px"
+        android:layout_height="360px"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_wechat_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_dark_gary"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+</com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoLinearLayout>

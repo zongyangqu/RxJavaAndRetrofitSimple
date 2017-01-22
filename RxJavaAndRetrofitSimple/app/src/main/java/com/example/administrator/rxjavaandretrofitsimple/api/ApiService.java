@@ -1,8 +1,14 @@
 package com.example.administrator.rxjavaandretrofitsimple.api;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsBean;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 
+import java.util.Map;
+
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -19,6 +25,13 @@ public interface ApiService {
      * 获取新闻列表
      */
     @GET("toutiao/index?type=top&key=761fc4e2bffe6ed2997b3626a642c3e0")
-    Observable<NewsBean> getNews();
+    Observable<NewsEntity> getNews();
+
+    /**
+     * 获取微信精选列表
+     */
+    @FormUrlEncoded
+    @POST("weixin/query")
+    Observable<WeChatEntity> getWeChat(@FieldMap Map<String, String> params);
 
 }

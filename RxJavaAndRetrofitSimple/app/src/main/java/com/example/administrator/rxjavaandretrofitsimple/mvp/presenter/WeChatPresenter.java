@@ -1,9 +1,9 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.model.NewsModel;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
+import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.view.NewsView;
+import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -15,20 +15,21 @@ import rx.schedulers.Schedulers;
 /**
  * 作者：quzongyang
  *
- * 创建时间：2017/1/18
+ * 创建时间：2017/1/21
  *
- * 类描述：新闻
+ * 类描述：
  */
 
-public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
+public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
     /**
-     * 获取新闻信息
-     * @param type  新闻类型
-     * top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+     * 获取微信精选
+     * @param pno
+     * @param ps
+     * @param key
      */
-    public void getNews(String type) {
-        Observable<NewsEntity> codeEntityObservable = getModel().getNews(type);
-        Subscriber<NewsEntity> subscriber = new Subscriber<NewsEntity>() {
+    public void getWeChat(String pno, String ps,String key) {
+        Observable<WeChatEntity> weChatObservable = getModel().getWeChat(pno,ps,key);
+        Subscriber<WeChatEntity> subscriber = new Subscriber<WeChatEntity>() {
             @Override
             public void onCompleted() {
 
@@ -41,14 +42,14 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
             }
 
             @Override
-            public void onNext(NewsEntity result) {
+            public void onNext(WeChatEntity result) {
                 getView().hideLoadingView();
                 getView().updateView(result);
             }
         };
-        codeEntityObservable.doOnNext(new Action1<NewsEntity>() {
+        weChatObservable.doOnNext(new Action1<WeChatEntity>() {
             @Override
-            public void call(NewsEntity entity) {
+            public void call(WeChatEntity entity) {
 
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).doOnSubscribe(new Action0() {
@@ -60,3 +61,4 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
         addSubscrib(subscriber);
     }
 }
+

@@ -20,8 +20,8 @@ public class DrivingQuestionModel extends BaseModel{
     /**
      * 模拟登陆
      */
-    public Observable<DrivingQuestionEntity> getQuestion(String key, String subject,String model){
+    /*public Observable<DrivingQuestionEntity> getQuestion(String key, String subject,String model){
         Map<String, String> params = NetParams.getInstance().getQuestion(key,subject,model);
         return getClientService().getDrivingQuestion(params);
-    }
+    }*/
 }

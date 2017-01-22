@@ -1,5 +1,8 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.model.base;
 
+import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
+import com.example.administrator.rxjavaandretrofitsimple.api.ApiService;
+import com.example.administrator.rxjavaandretrofitsimple.api.HostType;
 import com.example.administrator.rxjavaandretrofitsimple.util.ClientService;
 import com.example.administrator.rxjavaandretrofitsimple.util.ConfigUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.Logger;
@@ -22,41 +25,13 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  * 版本：
  */
 public class BaseModel {
-    static final String TAG = "Api.ApiClient";
-
-    private ClientService clientService;
+    private ApiService clientService;
     protected BaseModel(){
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient _client = new OkHttpClient();
-        OkHttpClient.Builder builder = _client.newBuilder();
-        builder.interceptors().add(interceptor);
-        builder.interceptors().add(logging);
-        /*builder.interceptors().add(new HttpLoggingInterceptor(new DebugLogger())
-                .setLevel(HttpLoggingInterceptor.Level.BODY));*/
-        _client = builder.connectTimeout(30, TimeUnit.SECONDS).readTimeout(30,TimeUnit.SECONDS).writeTimeout(30,TimeUnit.SECONDS).build();
-        //OkHttpClient client=new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).readTimeout(30,TimeUnit.SECONDS).writeTimeout(30,TimeUnit.SECONDS).build();
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(ConfigUtil.BASE_URL_DRIVING).client(_client).addConverterFactory(FastJsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
-        clientService = retrofit.create(ClientService.class);
+        clientService = ApiManager.getDefault(HostType.JUHE_DATE_NET_INTERFACE);
     }
-
-    public ClientService getClientService() {
+    public ApiService getClientService() {
         return clientService;
     }
 
-    private static class DebugLogger implements HttpLoggingInterceptor.Logger {
-        @Override
-        public void log(String message) {
-            Logger.BnhLogger.logger.d(TAG, "%s", message);
-        }
-    }
 
-    private static Interceptor interceptor = new Interceptor() {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Response response = chain.proceed(chain.request());
-            return response;
-        }
-    };
 }
