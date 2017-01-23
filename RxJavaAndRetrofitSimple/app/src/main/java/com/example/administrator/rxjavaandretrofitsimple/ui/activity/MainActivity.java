@@ -182,7 +182,7 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected Activity getActivity() {
-        return null;
+        return this;
     }
 
     @Override

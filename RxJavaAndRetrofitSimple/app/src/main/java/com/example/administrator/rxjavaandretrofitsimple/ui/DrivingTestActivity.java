@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.DrivingQuestionEntity;
-import com.example.administrator.rxjavaandretrofitsimple.bean.LoginEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.DrivingQuestionModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.DrivingQuestionPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.DrivingQuestionView;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.QuestionAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 

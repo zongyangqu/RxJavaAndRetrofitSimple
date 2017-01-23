@@ -62,4 +62,9 @@
         <!--<item name="colorControlHighlight">@color/light_title_grey</item>-->
     </style>
 
+    <!--冷启动界面-->
+    <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
 </resources>

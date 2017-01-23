@@ -28,11 +28,9 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity android:name=".ui.SplashActivity"
-            android:alwaysRetainTaskState="true"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/AppTheme.Launcher"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
