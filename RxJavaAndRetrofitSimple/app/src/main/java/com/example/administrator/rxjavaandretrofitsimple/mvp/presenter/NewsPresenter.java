@@ -1,5 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
+import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
 import com.example.administrator.rxjavaandretrofitsimple.api.RxNetworkResponseObserver;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.NewsModel;
@@ -27,9 +28,9 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
      * @param type  新闻类型
      * top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
      */
-    public void getNews(String type) {
+    public void getNews() {
         getView().startLoadingView();
-        Observable<NewsEntity> codeEntityObservable = getModel().getNews(type);
+        Observable<NewsEntity> codeEntityObservable = getModel().getNews(ApiManager.getCacheControl());
         RxNetworkResponseObserver<NewsEntity> subscriber = new RxNetworkResponseObserver<NewsEntity>() {
             @Override
             public void onBeforeResponseOperation() {

@@ -1,8 +1,12 @@
 package com.example.administrator.rxjavaandretrofitsimple.api;
 
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
+import com.example.administrator.rxjavaandretrofitsimple.util.AbAppUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.NetConnectionUtils;
 import com.example.administrator.rxjavaandretrofitsimple.util.conventer.FastJsonConverterFactory;
 
 import java.io.File;
@@ -10,6 +14,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,21 +41,14 @@ public class ApiManager {
 
     private static SparseArray<ApiManager> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
     /*************************缓存设置*********************/
-/*
-   1. noCache 不使用缓存，全部走网络
-
+    /*
+    1. noCache 不使用缓存，全部走网络
     2. noStore 不使用缓存，也不存储缓存
-
     3. onlyIfCached 只使用缓存
-
     4. maxAge 设置最大失效时间，失效则不使用 需要服务器配合
-
     5. maxStale 设置最大失效时间，失效则不使用 需要服务器配合 感觉这两个类似 还没怎么弄清楚，清楚的同学欢迎留言
-
     6. minFresh 设置有效时间，依旧如上
-
     7. FORCE_NETWORK 只走网络
-
     8. FORCE_CACHE 只走缓存*/
     /**
      * 设缓存有效期为两天
@@ -88,8 +86,8 @@ public class ApiManager {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
-                //.addInterceptor(mRewriteCacheControlInterceptor)
-                //.addNetworkInterceptor(mRewriteCacheControlInterceptor)
+                .addInterceptor(mRewriteCacheControlInterceptor)
+                .addNetworkInterceptor(mRewriteCacheControlInterceptor)
                 .addInterceptor(headerInterceptor)
                 .addInterceptor(logInterceptor)
                 .cache(cache)
@@ -116,4 +114,42 @@ public class ApiManager {
         }
         return retrofitManager.movieService;
     }
+
+    /**
+     * 根据网络状况获取缓存的策略
+     */
+    @NonNull
+    public static String getCacheControl() {
+        return NetConnectionUtils.isNetConnected(BaseApplication.getInstance()) ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
+    }
+
+    /**
+     * 云端响应头拦截器，用来配置缓存策略
+     * Dangerous interceptor that rewrites the server's cache-control header.
+     */
+    private final Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            String cacheControl = request.cacheControl().toString();
+            if (!NetConnectionUtils.isNetConnected(BaseApplication.getInstance())) {
+                request = request.newBuilder()
+                        .cacheControl(TextUtils.isEmpty(cacheControl)? CacheControl.FORCE_NETWORK:CacheControl.FORCE_CACHE)
+                        .build();
+            }
+            Response originalResponse = chain.proceed(request);
+            if (NetConnectionUtils.isNetConnected(BaseApplication.getInstance())) {
+                //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
+                return originalResponse.newBuilder()
+                        .header("Cache-Control", cacheControl)
+                        .removeHeader("Pragma")
+                        .build();
+            } else {
+                return originalResponse.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC)
+                        .removeHeader("Pragma")
+                        .build();
+            }
+        }
+    };
 }

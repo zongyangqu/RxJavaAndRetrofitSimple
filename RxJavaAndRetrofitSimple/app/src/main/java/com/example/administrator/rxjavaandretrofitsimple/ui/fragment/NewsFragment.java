@@ -54,7 +54,7 @@ public class NewsFragment extends BaseFragment implements NewsView{
         _presenter = new NewsPresenter();
         _presenter.attachView(this);
         _presenter.attachModel(new NewsModel());
-        _presenter.getNews("top");
+        _presenter.getNews();
     }
 
     @Override

@@ -18,11 +18,10 @@ public class NewsModel extends BaseModel{
     /**
      * 获取新闻
      *
-     * @param type
+     * @param cacheControl
      * @return
      */
-    public Observable<NewsEntity> getNews(String type) {
-        //Map<String, String> params = NetParams.getInstance().WaitGrabSearch(user_id,position_x, position_y,OrderIDList);
-        return getClientService().getNews();
+    public Observable<NewsEntity> getNews(String cacheControl) {
+        return getClientService().getNews(cacheControl);
     }
 }
