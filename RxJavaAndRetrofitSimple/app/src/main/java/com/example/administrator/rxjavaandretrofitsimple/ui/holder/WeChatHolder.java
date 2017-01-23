@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.holder;
+package com.example.administrator.rxjavaandretrofitsimple.ui.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

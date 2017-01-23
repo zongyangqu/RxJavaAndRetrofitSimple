@@ -42,6 +42,7 @@ public class ApiManager {
     private static SparseArray<ApiManager> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
     /*************************缓存设置*********************/
     /*
+    目前OKHttp只支持GET请求的网络缓存
     1. noCache 不使用缓存，全部走网络
     2. noStore 不使用缓存，也不存储缓存
     3. onlyIfCached 只使用缓存

@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.adapter.NewsAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.NewsModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.NewsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.NewsView;
+import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.NewsAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 
@@ -22,7 +22,7 @@ import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
  *
  * 创建时间：2017/1/18
  *
- * 类描述：新闻
+ * 类描述：新闻（此界面使用了网络缓存）
  */
 
 public class NewsFragment extends BaseFragment implements NewsView{

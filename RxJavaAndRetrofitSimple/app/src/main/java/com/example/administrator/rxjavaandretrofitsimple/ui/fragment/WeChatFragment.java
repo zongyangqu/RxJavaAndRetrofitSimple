@@ -8,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.adapter.NewsAdapter;
-import com.example.administrator.rxjavaandretrofitsimple.adapter.WeChatAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.WeChatPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
+import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.WeChatAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseFragment;
 
 /**

@@ -27,7 +27,7 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
      * @param pno
      * @param ps
      * @param key
-     * ApiManager.getCacheControl配置缓存如果不需要可以不加
+     *
      */
     public void getWeChat(String pno, String ps,String key) {
         Observable<WeChatEntity> weChatObservable = getModel().getWeChat(pno,ps,key);

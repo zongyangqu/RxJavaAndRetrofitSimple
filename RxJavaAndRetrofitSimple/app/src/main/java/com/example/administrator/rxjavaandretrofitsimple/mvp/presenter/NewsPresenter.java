@@ -20,6 +20,8 @@ import rx.schedulers.Schedulers;
  * 创建时间：2017/1/18
  *
  * 类描述：新闻
+ *
+ * ApiManager.getCacheControl配置缓存如果不需要可以不加
  */
 
 public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
@@ -30,7 +32,7 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
      */
     public void getNews() {
         getView().startLoadingView();
-        Observable<NewsEntity> codeEntityObservable = getModel().getNews(ApiManager.getCacheControl());
+        Observable<NewsEntity> codeEntityObservable = getModel().getNews();
         RxNetworkResponseObserver<NewsEntity> subscriber = new RxNetworkResponseObserver<NewsEntity>() {
             @Override
             public void onBeforeResponseOperation() {

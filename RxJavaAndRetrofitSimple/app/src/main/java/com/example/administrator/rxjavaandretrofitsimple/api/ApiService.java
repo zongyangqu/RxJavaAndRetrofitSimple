@@ -25,7 +25,7 @@ public interface ApiService {
 
     /**
      * 获取新闻列表
-     * @param cacheControl  网络请求缓存策略
+     * @param cacheControl  网络请求缓存策略，只支持GET请求
      * @return
      */
     @GET("toutiao/index?type=top&key=761fc4e2bffe6ed2997b3626a642c3e0")

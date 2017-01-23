@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.adapter;
+package com.example.administrator.rxjavaandretrofitsimple.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

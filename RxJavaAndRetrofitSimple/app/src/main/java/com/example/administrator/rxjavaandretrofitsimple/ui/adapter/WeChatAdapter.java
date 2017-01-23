@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.adapter;
+package com.example.administrator.rxjavaandretrofitsimple.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
-import com.example.administrator.rxjavaandretrofitsimple.holder.WeChatHolder;
+import com.example.administrator.rxjavaandretrofitsimple.ui.holder.WeChatHolder;
 
 import java.util.ArrayList;
 import java.util.List;
