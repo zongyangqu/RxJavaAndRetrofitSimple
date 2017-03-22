@@ -14,6 +14,7 @@ public class ApiConstants {
     public static final String END_URL = "-20.html";
     public static final String ENDDETAIL_URL = "/full.html";
     public static final String JUHE_NET_INTERFACE = "http://v.juhe.cn/";
+    public static final String JUHE_NET_INTERFACEJOKE = "http://japi.juhe.cn/";
     // 新闻详情
     public static final String NEWS_DETAIL = NETEAST_HOST + "nc/article/";
 
@@ -168,6 +169,9 @@ public class ApiConstants {
                 break;
             case HostType.JUHE_DATE_NET_INTERFACE:
                 host = JUHE_NET_INTERFACE;
+                break;
+            case HostType.JUHE_DATE_NET_INTERFACEJOKE:
+                host = JUHE_NET_INTERFACEJOKE;
                 break;
             default:
                 host = "";

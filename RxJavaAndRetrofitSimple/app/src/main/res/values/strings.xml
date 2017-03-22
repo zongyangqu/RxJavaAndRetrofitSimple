@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RxJavaAndRetrofitSimple</string>
+    <color name="layout_background">#f0f0f0</color>
 </resources>

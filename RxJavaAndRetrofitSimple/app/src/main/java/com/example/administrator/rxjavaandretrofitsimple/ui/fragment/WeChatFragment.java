@@ -3,9 +3,6 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
@@ -14,7 +11,11 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.WeChatPre
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.WeChatAdapter;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragment;
+import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
+
+import butterknife.Bind;
 
 /**
  * 作者：quzongyang
@@ -24,31 +25,23 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseFragment;
  * 类描述：微信精选
  */
 
-public class WeChatFragment extends BaseFragment implements WeChatView{
+public class WeChatFragment extends BaseModelFragment implements WeChatView{
     private WeChatPresenter _presenter;
     private WeChatAdapter adapter;
-    private RecyclerView rcv_weChat;
+    @Bind(R.id.rcv_weChat)
+    RecyclerView rcv_weChat;
+
     @Override
-    protected BasePresenter getCurrentPersenter() {
-        return _presenter;
+    protected int getLayoutId() {
+        return R.layout.fragment_wechat;
     }
 
     @Override
-    protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = onCreateView(R.layout.fragment_wechat, inflater, container, savedInstanceState);
-        findViewByID(rootView);
-        return rootView;
-    }
-
-    public void findViewByID(View rootView){
-        rcv_weChat = (RecyclerView) rootView.findViewById(R.id.rcv_weChat);
+    protected void onViewCreatedLazily(Bundle bundle) {
+        rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WeChatAdapter(getActivity());
         rcv_weChat.setAdapter(adapter);
-    }
-
-    @Override
-    protected void initData() {
         _presenter = new WeChatPresenter();
         _presenter.attachView(this);
         _presenter.attachModel(new WeChatModel());
@@ -56,8 +49,25 @@ public class WeChatFragment extends BaseFragment implements WeChatView{
     }
 
     @Override
-    public void RefreshFragment() {
+    protected void onRetryClick() {
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        AbToastUtil.showToast(getActivity(),isVisibleToUser+"");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        AbToastUtil.showToast(getActivity(),"Wechat-->"+hidden);
+    }
+
+    @Override
+    protected BasePresenter getCurrentPersenter() {
+        return _presenter;
     }
 
     @Override
@@ -67,12 +77,13 @@ public class WeChatFragment extends BaseFragment implements WeChatView{
 
     @Override
     public void hideLoadingView() {
-
+        ProgressDialogUtils.dismiss();
     }
 
     @Override
     public void startLoadingView() {
-
+        AbToastUtil.showToast(getActivity(),"start");
+        ProgressDialogUtils.show(getActivity());
     }
 
     @Override

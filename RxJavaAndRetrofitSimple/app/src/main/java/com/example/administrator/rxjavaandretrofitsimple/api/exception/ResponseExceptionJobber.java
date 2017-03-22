@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
  *
  * 创建时间：2017/1/22
  *
- * 类描述：
+ * 类描述：根据接口返回code检查是否错误
  */
 
 public class ResponseExceptionJobber {

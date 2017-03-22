@@ -1,10 +1,13 @@
 package com.example.administrator.rxjavaandretrofitsimple.api;
 
+import com.example.administrator.rxjavaandretrofitsimple.api.params.JokeParams;
+import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 
 import java.util.Map;
 
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -18,7 +21,7 @@ import rx.Observable;
  *
  * 创建时间：2017/1/19
  *
- * 类描述：请求接口类
+ * 类描述：请求接口类 功能与RequestClient一致
  */
 
 public interface ApiService {
@@ -38,5 +41,18 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("weixin/query")
     Observable<WeChatEntity> getWeChat(@FieldMap Map<String, String> params);
+
+
+
+    /**
+     * 获取微信精选列表
+     */
+    @FormUrlEncoded
+    @POST("/joke/content/text.from")
+    Observable<JokeResponse> getJokeInfo(@FieldMap Map<String, String> params);
+
+
+
+
 
 }

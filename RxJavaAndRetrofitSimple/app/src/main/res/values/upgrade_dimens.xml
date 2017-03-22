@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+规范
+    1、字体大小 size_describe_target
+    2、外边距 margin_left_describe_target,其他同理
+    3、内边距 padding_left_describe_target,其他同理
+    4、控件高度 height_describe_target(建议自适应高度)
+    4、控件宽度 width_describe_target(建议自适应宽度)
+-->
+    <dimen name="size_toolbar_title">18dp</dimen>
+    <dimen name="size_toolbar_left_text_button">14dp</dimen>
+    <dimen name="size_toolbar_right_text_button">14dp</dimen>
+    <dimen name="size_edit_text_widget_common">14dp</dimen>
+    <dimen name="size_button_text_size_common">14dp</dimen>
+    <dimen name="size_home_page_location_city_text">14dp</dimen>
+    <dimen name="size_nearest_campus_name_text">15dp</dimen>
+    <dimen name="size_nearest_campus_address_text">12dp</dimen>
+    <dimen name="size_nearest_campus_address_empty_text">16dp</dimen>
+    <dimen name="size_featured_category_name_text">15dp</dimen>
+    <dimen name="size_change_city_anchor_text">14dp</dimen>
+    <dimen name="size_course_filter_checker_box">12dp</dimen>
+    <dimen name="size_level0_category_text">15dp</dimen>
+    <dimen name="size_level1_category_text">15dp</dimen>
+    <dimen name="size_level2_category_text">12dp</dimen>
+    <dimen name="padding_right_common">15dp</dimen>
+    <dimen name="padding_left_common">15dp</dimen>
+    <dimen name="padding_right_toolbar_right_text_button">@dimen/padding_right_common</dimen>
+    <dimen name="padding_edit_text_drawable">10dp</dimen>
+    <dimen name="padding_course_filter">15dp</dimen>
+    <dimen name="margin_right_common">15dp</dimen>
+    <dimen name="margin_left_common">15dp</dimen>
+    <dimen name="margin_right_toolbar_right_text_button">@dimen/margin_right_common</dimen>
+    <dimen name="margin_left_toolbar_left_text_button">@dimen/margin_left_common</dimen>
+    <dimen name="margin_right_thin_divider_login">@dimen/margin_right_common</dimen>
+    <dimen name="margin_left_thin_divider_login">@dimen/margin_left_common</dimen>
+    <dimen name="margin_top_home_page_item">10dp</dimen>
+    <dimen name="height_input_area_login">45dp</dimen>
+    <dimen name="height_nearest_campus_stamp">29dp</dimen>
+    <dimen name="height_thin_divider">0.5dp</dimen>
+    <dimen name="height_search_list_campus_log">90dp</dimen>
+    <dimen name="height_campus_detail_header">210dp</dimen>
+    <dimen name="height_merchant_detail_header">@dimen/height_campus_detail_header</dimen>
+    <dimen name="width_thin_divider">0.5dp</dimen>
+    <dimen name="width_search_input_box">150dp</dimen>
+    <dimen name="width_nearest_campus_stamp">59dp</dimen>
+    <dimen name="width_search_goods_type_selector">50dp</dimen>
+    <dimen name="width_search_list_campus_log">90dp</dimen>
+</resources>

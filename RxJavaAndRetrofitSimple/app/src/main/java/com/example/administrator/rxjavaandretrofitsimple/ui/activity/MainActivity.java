@@ -8,8 +8,7 @@ import android.widget.FrameLayout;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.TabEntity;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.NewsFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.OthersFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragment;
@@ -31,12 +30,12 @@ import butterknife.Bind;
  * 类描述：
  */
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseNoNetworkActivity {
     @Bind(R.id.tab_layout)
     CommonTabLayout tabLayout;
     @Bind(R.id.fl_body)
     FrameLayout fl_body;
-    private String[] mTitles = {"新闻", "微信","视频","其他"};
+    private String[] mTitles = {"新闻", "微信","视频","综合"};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,R.mipmap.ic_girl_normal,R.mipmap.ic_video_normal,R.mipmap.ic_care_normal};
     private int[] mIconSelectIds = {
@@ -46,7 +45,6 @@ public class MainActivity extends BaseActivity{
     private VideoFragment videoFragment;
     private OthersFragment othersFragment;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private static int tabLayoutHeight;
     /**
      * 入口
      * @param activity
@@ -57,17 +55,23 @@ public class MainActivity extends BaseActivity{
         activity.overridePendingTransition(R.anim.fade_in,
                 R.anim.fade_out);
     }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_layout);
+    protected int getLayoutId() {
+        return R.layout.activity_main_layout;
+    }
+
+    @Override
+    protected void onViewCreated(Bundle savedInstanceState) {
+        initTitleBar();
         initTab();
         initFragment(savedInstanceState);
-        initTitleBar();
-        initfindViewById();
-        init();
-        setListener();
     }
+
+    @Override
+    protected void onRetryClick() {
+    }
+
 
     /**
      * 初始化碎片
@@ -121,7 +125,6 @@ public class MainActivity extends BaseActivity{
      * 切换
      */
     private void SwitchTo(int position) {
-        //LogUtils.logd("主页菜单position" + position);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
             //新闻
@@ -162,22 +165,7 @@ public class MainActivity extends BaseActivity{
     }
     @Override
     protected void initTitleBar() {
-        hideTitle();
-    }
-
-    @Override
-    protected void initfindViewById() {
-
-    }
-
-    @Override
-    protected void setListener() {
-
-    }
-
-    @Override
-    protected void init() {
-
+        showTitle(false);
     }
 
     @Override
@@ -185,8 +173,4 @@ public class MainActivity extends BaseActivity{
         return this;
     }
 
-    @Override
-    protected BasePresenter getCurrentPersenter() {
-        return null;
-    }
 }

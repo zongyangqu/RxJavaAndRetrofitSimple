@@ -36,6 +36,14 @@ public class NetParams {
         return params;
     }
 
+    public Map<String, String> getJoke(String page, String pagesize,String key) {
+        Map<String, String> params = new HashMap<>();
+        params.put("page", page);
+        params.put("pagesize", pagesize);
+        params.put("key",key);
+        return params;
+    }
+
 
     /**
      * 查询IP地址（模拟登陆）

@@ -40,28 +40,25 @@
 
         <activity
             android:name=".ui.activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize" />
+            android:screenOrientation="portrait" />
 
-        <activity
+ <!--       <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"/>
-
+-->
         <activity
             android:name=".ui.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"/>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.DrivingTestActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"/>
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.JokeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

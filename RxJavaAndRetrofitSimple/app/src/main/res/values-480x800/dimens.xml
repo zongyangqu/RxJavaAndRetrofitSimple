@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paying_count_down_size">12dp</dimen>
+    <dimen name="textSize16">14dp</dimen>
+    <dimen name="max_width_toolbar_title">200dp</dimen>
+    <dimen name="height_comment_box">120dp</dimen>
+    <dimen name="max_height_comment_box">120dp</dimen>
+    <dimen name="height_bank_card_gallery">180dp</dimen>
+    <dimen name="textsize_with_draw_tip">10dp</dimen>
+
+    <dimen name="height_bank_card">110dp</dimen>
+    <dimen name="textsize_bank_card">20dp</dimen>
+    <dimen name="margin_top_bank_card_number">20dp</dimen>
+    <dimen name="width_bank_card_logo_mark">90dp</dimen>
+    <dimen name="width_bank_card_logo">23dp</dimen>
+    <dimen name="margin_bank_card_logo">15dp</dimen>
+    <dimen name="margin_top_with_draw_body">140dp</dimen>
+
+    <dimen name="withDraw_bankCardGalleyHeight">170dp</dimen>
+    <dimen name="withDraw_bankCardGalleyWidth">260dp</dimen>
+    <dimen name="textsize_supported_bank_cards_tip">10dp</dimen>
+    <dimen name="width_bank_card_area_logo">30dp</dimen>
+    <dimen name="max_width_teacher_course_name">200dp</dimen>
+    <dimen name="margin_top_bank_card_name">20dp</dimen>
+</resources>

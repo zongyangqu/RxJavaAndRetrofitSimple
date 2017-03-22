@@ -34,7 +34,6 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
         Subscriber<WeChatEntity> subscriber = new Subscriber<WeChatEntity>() {
             @Override
             public void onCompleted() {
-
             }
 
             @Override

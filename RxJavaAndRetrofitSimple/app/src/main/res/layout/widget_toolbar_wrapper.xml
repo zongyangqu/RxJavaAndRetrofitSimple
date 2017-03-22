@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/realToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="vertical"
+    app:navigationIcon="@mipmap/back">
+
+    <TextView
+        android:id="@+id/leftTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/margin_left_toolbar_left_text_button"
+        android:textSize="@dimen/size_toolbar_left_text_button"
+        android:visibility="gone"
+        tools:text="按钮" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/size_toolbar_title"
+        android:maxWidth="@dimen/max_width_toolbar_title"
+        android:singleLine="true"
+        tools:text="标题" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
+
+        <TextView
+            android:id="@+id/rightTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/margin_right_toolbar_right_text_button"
+            android:gravity="center"
+            android:textSize="@dimen/size_toolbar_right_text_button"
+            android:visibility="gone"
+            tools:text="按钮" />
+
+        <ImageView
+            android:id="@+id/rightImageButton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:scaleType="center"
+            android:src="@mipmap/search"
+            android:visibility="visible" />
+    </FrameLayout>
+</android.support.v7.widget.Toolbar>

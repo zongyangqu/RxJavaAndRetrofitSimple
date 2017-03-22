@@ -220,4 +220,11 @@
     <color name="invoice_text">#666666</color>
     <color name="success_yellow">#ffa018</color>
 
+    <color name="color333333">#333333</color>
+    <color name="color666666">#666666</color>
+    <color name="color999999">#999999</color>
+    <color name="themeColor">#ef4040</color>
+    <color name="color_order_actions_button_disable">#cccccc</color>
+    <color name="color_location_bg">#F0F0F0</color>
+
 </resources>

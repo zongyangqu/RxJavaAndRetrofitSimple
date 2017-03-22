@@ -1,6 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.model;
 
 import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
+import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.base.BaseModel;
 import com.example.administrator.rxjavaandretrofitsimple.util.client.NetParams;
@@ -30,4 +31,5 @@ public class WeChatModel extends BaseModel{
         Map<String, String> params = NetParams.getInstance().getWeChat(pno,ps,key);
         return getClientService().getWeChat(params);
     }
+
 }

@@ -10,6 +10,10 @@ package com.example.administrator.rxjavaandretrofitsimple.util;
 
 public class LocalConstant {
 
+    public static final String JOKE_REQURST_KAY =  "379618956b7f04290922c73c27a2feb6";
+
+    public static final int DEFAULT_PAGE =  10;
+
     public static final String MAIN_CURRENT_TAB_POSITION="MAIN_CURRENT_TAB_POSITION";
     /**
      * 生产服务器

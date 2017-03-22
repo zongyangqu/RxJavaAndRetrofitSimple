@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Toolbar装饰着-->
+    <declare-styleable name="ToolbarWrapper">
+        <attr name="tbw_navigation_icon" format="reference" />
+        <attr name="tbw_navigation_enable" format="boolean" />
+        <attr name="tbw_title" format="string" />
+        <attr name="tbw_title_color" format="color" />
+        <attr name="tbw_left_text" format="string" />
+        <attr name="tbw_left_text_color" format="color" />
+        <attr name="tbw_right_text" format="string" />
+        <attr name="tbw_right_text_color" format="color" />
+        <attr name="tbw_background_color" format="reference" />
+        <attr name="tbw_right_image_button_src" format="reference" />
+    </declare-styleable>
+</resources>
