@@ -11,7 +11,7 @@ package com.example.administrator.rxjavaandretrofitsimple.util;
 public class LocalConstant {
 
     public static final String JOKE_REQURST_KAY =  "379618956b7f04290922c73c27a2feb6";
-
+    public static final String WECHAT_REQURST_KAY =  "5c6868ae0010858fab351ac83921d9b3";
     public static final int DEFAULT_PAGE =  10;
 
     public static final String MAIN_CURRENT_TAB_POSITION="MAIN_CURRENT_TAB_POSITION";

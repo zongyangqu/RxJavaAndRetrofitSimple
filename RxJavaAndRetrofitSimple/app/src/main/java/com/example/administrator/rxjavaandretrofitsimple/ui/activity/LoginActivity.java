@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.ui;
+package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -91,6 +91,11 @@ public class LoginActivity extends Activity implements LoginView,View.OnClickLis
                 AbToastUtil.showToast(getActivity(),loginEntity.getReason());
             }
         }
+    }
+
+    @Override
+    public void displayEmptyPage() {
+
     }
 
     @Override

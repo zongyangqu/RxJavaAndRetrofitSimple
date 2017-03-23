@@ -33,6 +33,12 @@ public class WeChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.weChatList = weChatList;
         notifyDataSetChanged();
     }
+
+    public void addData(List<WeChatEntity.ResultBean.ListBean>weChatList){
+        this.weChatList.addAll(weChatList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new WeChatHolder(LayoutInflater.from(context).inflate(R.layout.item_wechat, parent, false));

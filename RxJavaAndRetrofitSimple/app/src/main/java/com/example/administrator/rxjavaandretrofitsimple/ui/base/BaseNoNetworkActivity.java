@@ -101,9 +101,6 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
     }
 
 
-    /**
-     * Config the toolbar, invoked before {@link #onViewCreated()}
-     */
     protected void configToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.ui;
+package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -60,6 +60,11 @@ public class DrivingTestActivity extends Activity implements DrivingQuestionView
                 AbToastUtil.showToast(getActivity(),"网络错误");
             }
         }
+    }
+
+    @Override
+    public void displayEmptyPage() {
+
     }
 
     @Override

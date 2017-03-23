@@ -1,11 +1,9 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
-import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,7 +16,7 @@ import rx.schedulers.Schedulers;
  *
  * 创建时间：2017/1/21
  *
- * 类描述：
+ * 类描述：微信精选
  */
 
 public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
@@ -27,10 +25,10 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
      * @param pno
      * @param ps
      * @param key
-     *
+     *@param isLoadMore  是否是上拉加载更多的请求
      */
-    public void getWeChat(String pno, String ps,String key) {
-        Observable<WeChatEntity> weChatObservable = getModel().getWeChat(pno,ps,key);
+    public void getWeChat(int pno, int ps, String key, final boolean isLoadMore) {
+        Observable<WeChatEntity> weChatObservable = getModel().getWeChat(String.valueOf(pno),String.valueOf(ps),key);
         Subscriber<WeChatEntity> subscriber = new Subscriber<WeChatEntity>() {
             @Override
             public void onCompleted() {
@@ -44,8 +42,11 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
 
             @Override
             public void onNext(WeChatEntity result) {
-                getView().hideLoadingView();
-                getView().updateView(result);
+                if(result.result.list.isEmpty()){
+                    getView().displayEmptyPage();
+                }else{
+                    getView().provideWeChat(result,isLoadMore);
+                }
             }
         };
         weChatObservable.doOnNext(new Action1<WeChatEntity>() {

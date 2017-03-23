@@ -30,7 +30,7 @@ public class NetParams {
      */
     public Map<String, String> getWeChat(String pno, String ps,String key) {
         Map<String, String> params = new HashMap<>();
-        params.put("pno", key);
+        params.put("pno", pno);
         params.put("ps", ps);
         params.put("key",key);
         return params;

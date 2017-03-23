@@ -3,8 +3,8 @@ package com.example.administrator.rxjavaandretrofitsimple.util;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.example.administrator.rxjavaandretrofitsimple.ui.DrivingTestActivity;
-import com.example.administrator.rxjavaandretrofitsimple.ui.LoginActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.DrivingTestActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.LoginActivity;
 
 /**
  * 类名称：

@@ -30,6 +30,9 @@ public class JokeActivity extends BaseStatusMvpStatusActivity<JokeView,JokePrese
     @Bind(R.id.rcvJoke)
     RecyclerView rcvJoke;
     JokeAdapter jokeAdapter;
+    private int total_page;
+    private int total;
+    private int currentPage = 1;
     /**
      * 入口
      * @param activity

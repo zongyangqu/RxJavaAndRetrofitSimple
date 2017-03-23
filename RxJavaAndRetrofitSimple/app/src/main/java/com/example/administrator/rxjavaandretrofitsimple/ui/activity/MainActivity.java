@@ -3,7 +3,11 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
@@ -33,8 +37,9 @@ import butterknife.Bind;
 public class MainActivity extends BaseNoNetworkActivity {
     @Bind(R.id.tab_layout)
     CommonTabLayout tabLayout;
-    @Bind(R.id.fl_body)
-    FrameLayout fl_body;
+    @Bind(R.id.viewPager)
+    ViewPager mViewPager;
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles = {"新闻", "微信","视频","综合"};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,R.mipmap.ic_girl_normal,R.mipmap.ic_video_normal,R.mipmap.ic_care_normal};
@@ -64,8 +69,8 @@ public class MainActivity extends BaseNoNetworkActivity {
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
         initTitleBar();
-        initTab();
         initFragment(savedInstanceState);
+        initTab();
     }
 
     @Override
@@ -77,28 +82,21 @@ public class MainActivity extends BaseNoNetworkActivity {
      * 初始化碎片
      */
     private void initFragment(Bundle savedInstanceState) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        int currentTabPosition = 0;
         if (savedInstanceState != null) {
             newsFragment = (NewsFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
             weChatFragment = (WeChatFragment) getSupportFragmentManager().findFragmentByTag("weChatFragment");
             videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
             othersFragment = (OthersFragment) getSupportFragmentManager().findFragmentByTag("othersFragment");
-            currentTabPosition = savedInstanceState.getInt(LocalConstant.MAIN_CURRENT_TAB_POSITION);
         } else {
             newsFragment = new NewsFragment();
             weChatFragment = new WeChatFragment();
             videoFragment = new VideoFragment();
             othersFragment = new OthersFragment();
-
-            transaction.add(R.id.fl_body, newsFragment, "newsFragment");
-            transaction.add(R.id.fl_body, weChatFragment, "weChatFragment");
-            transaction.add(R.id.fl_body, videoFragment, "videoFragment");
-            transaction.add(R.id.fl_body, othersFragment, "othersFragment");
+            mFragments.add(newsFragment);
+            mFragments.add(weChatFragment);
+            mFragments.add(videoFragment);
+            mFragments.add(othersFragment);
         }
-        transaction.commit();
-        SwitchTo(currentTabPosition);
-        tabLayout.setCurrentTab(currentTabPosition);
     }
 
     /**
@@ -108,61 +106,57 @@ public class MainActivity extends BaseNoNetworkActivity {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
+        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         tabLayout.setTabData(mTabEntities);
-        //点击监听
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                SwitchTo(position);
+                mViewPager.setCurrentItem(position);
             }
+
             @Override
             public void onTabReselect(int position) {
+
             }
         });
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.setCurrentTab(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mViewPager.setCurrentItem(0);
     }
 
-    /**
-     * 切换
-     */
-    private void SwitchTo(int position) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch (position) {
-            //新闻
-            case 0:
-                transaction.hide(weChatFragment);
-                transaction.hide(videoFragment);
-                transaction.hide(othersFragment);
-                transaction.show(newsFragment);
-                transaction.commitAllowingStateLoss();
-                break;
-            //微信精选
-            case 1:
-                transaction.hide(videoFragment);
-                transaction.hide(othersFragment);
-                transaction.hide(newsFragment);
-                transaction.show(weChatFragment);
-                transaction.commitAllowingStateLoss();
-                break;
-            //视频
-            case 2:
-                transaction.hide(newsFragment);
-                transaction.hide(weChatFragment);
-                transaction.hide(othersFragment);
-                transaction.show(videoFragment);
-                transaction.commitAllowingStateLoss();
-                break;
-            //其他
-            case 3:
-                transaction.hide(newsFragment);
-                transaction.hide(weChatFragment);
-                transaction.hide(videoFragment);
-                transaction.show(othersFragment);
-                transaction.commitAllowingStateLoss();
-                break;
-            default:
-                break;
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitles[position];
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
         }
     }
+
     @Override
     protected void initTitleBar() {
         showTitle(false);

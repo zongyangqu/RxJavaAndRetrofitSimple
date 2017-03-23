@@ -42,22 +42,20 @@
             android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
- <!--       <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"/>
--->
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.DrivingTestActivity"
+            android:name=".ui.activity.DrivingTestActivity"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.activity.JokeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.HistoryTodayActivity"
             android:screenOrientation="portrait" />
     </application>
 

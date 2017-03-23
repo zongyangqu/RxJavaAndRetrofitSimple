@@ -12,4 +12,9 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
  */
 
 public interface WeChatView extends BaseView<WeChatEntity>{
+
+    /**
+     * 更新数据
+     */
+    void provideWeChat(WeChatEntity response,boolean isLoadMore);
 }

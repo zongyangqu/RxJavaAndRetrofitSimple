@@ -18,10 +18,15 @@
         tl:tl_textUnselectColor="@color/light_gray"
         tl:tl_textsize="11sp"
         tl:tl_underline_height="0dp" />
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_above="@id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <!--<FrameLayout
         android:id="@+id/fl_body"
         android:layout_width="match_parent"
         android:layout_above="@+id/tab_layout"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>-->
 
 </com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout>

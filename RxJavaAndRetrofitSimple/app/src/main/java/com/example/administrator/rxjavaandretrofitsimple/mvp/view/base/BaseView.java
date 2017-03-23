@@ -27,4 +27,9 @@ public interface BaseView<T> {
      * 显示错误信息
      */
     void showError(String errMsg);
+
+    /**
+     * 空数据
+     */
+    void displayEmptyPage();
 }

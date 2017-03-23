@@ -1,9 +1,15 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.android.qzy.library.refreshview.SpringView;
+import com.android.qzy.library.refreshview.container.RotationFooter;
+import com.android.qzy.library.refreshview.container.RotationHeader;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
@@ -13,6 +19,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.WeChatAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
 
 import butterknife.Bind;
@@ -30,6 +37,10 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
     private WeChatAdapter adapter;
     @Bind(R.id.rcv_weChat)
     RecyclerView rcv_weChat;
+    @Bind(R.id.springview)
+    SpringView springView;
+    private int total_page;
+    private int currentPage = 1;
 
     @Override
     protected int getLayoutId() {
@@ -38,6 +49,11 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
 
     @Override
     protected void onViewCreatedLazily(Bundle bundle) {
+        setListener();
+        initView();
+    }
+
+    public void initView(){
         rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WeChatAdapter(getActivity());
@@ -45,25 +61,45 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
         _presenter = new WeChatPresenter();
         _presenter.attachView(this);
         _presenter.attachModel(new WeChatModel());
-        _presenter.getWeChat("1","25","5c6868ae0010858fab351ac83921d9b3");
+        refreshWeChatInfo(1,false);
+    }
+
+    public void setListener(){
+        springView.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshWeChatInfo(1,false);
+            }
+            @Override
+            public void onLoadmore() {
+                if(total_page>currentPage){
+                    currentPage = currentPage+1;
+                    refreshWeChatInfo(currentPage,true);
+                }else{
+                    springView.onFinishFreshAndLoad();
+                    AbToastUtil.showToast(getActivity(),"没有更多了，亲！");
+                }
+            }
+        });
+        springView.setHeader(new RotationHeader(getActivity()));
+        springView.setFooter(new RotationFooter(getActivity()));
     }
 
     @Override
     protected void onRetryClick() {
-
+        refreshWeChatInfo(1,false);
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        AbToastUtil.showToast(getActivity(),isVisibleToUser+"");
+
+    /**
+     * 调用接口
+     * @param currentPage   当前页数
+     * @param isLoadMore  是否是上拉加载更多
+     */
+    public void refreshWeChatInfo(int currentPage,boolean isLoadMore){
+        _presenter.getWeChat(currentPage, LocalConstant.DEFAULT_PAGE,LocalConstant.WECHAT_REQURST_KAY,isLoadMore);
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        AbToastUtil.showToast(getActivity(),"Wechat-->"+hidden);
-    }
 
     @Override
     protected BasePresenter getCurrentPersenter() {
@@ -71,23 +107,42 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
     }
 
     @Override
+    public void provideWeChat(WeChatEntity response, boolean isLoadMore) {
+        springView.onFinishFreshAndLoad();
+        statusLayoutManager.showContent();
+        total_page = response.result.totalPage;
+        if(isLoadMore){//加载更多
+            adapter.addData(response.result.list);
+        }else{//刷新
+            adapter.setData(response.result.list);
+        }
+    }
+
+
+
+    @Override
+    public void displayEmptyPage() {
+        statusLayoutManager.showEmptyData();
+    }
+
+
+    @Override
     public void updateView(WeChatEntity response) {
-        adapter.setData(response.result.list);
     }
 
     @Override
     public void hideLoadingView() {
-        ProgressDialogUtils.dismiss();
+        springView.onFinishFreshAndLoad();
+        //ProgressDialogUtils.dismiss();
     }
 
     @Override
     public void startLoadingView() {
-        AbToastUtil.showToast(getActivity(),"start");
-        ProgressDialogUtils.show(getActivity());
+        //ProgressDialogUtils.show(getActivity());
     }
 
     @Override
     public void showError(String errMsg) {
-
+        statusLayoutManager.showNetWorkError();
     }
 }
