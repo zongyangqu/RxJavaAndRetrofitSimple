@@ -1,50 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="登录"/>
-        <Button
-            android:id="@+id/btn_delete_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="删除用户信息"/>
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:id="@+id/ll_state_loading"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        <ProgressBar
-            android:id="@+id/iv_state_loading_icon"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_my_checkout_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="手机号"
+            android:textColor="@color/common_item_text_black"
+            android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_state_loading_text"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_login_user"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@color/white"
+            android:gravity="right|center_vertical"
+            android:hint="请输入您的手机号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/common_item_text_black"
+            android:textColorHint="@color/modify_pwd_hint_color"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_project_bg" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20px"
-            android:text="加载中..."
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="密    码"
+            android:textColor="@color/common_item_text_black"
+            android:textSize="15sp" />
 
-</RelativeLayout>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_login_pwd"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@color/white"
+            android:digits="0123456789qwertyuioplkjhgfdsazxcvbnm"
+            android:gravity="right|center_vertical"
+            android:hint="请输入您的登陆密码"
+            android:inputType="textPassword"
+            android:textColor="@color/common_item_text_black"
+            android:textColorHint="@color/modify_pwd_hint_color"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_project_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvLoginRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="立即注册"
+            android:textColor="@color/common_item_text_orange"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <com.android.qzy.library.utils.CarouseButton
+        android:id="@+id/btn_login"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="登陆"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tl:normalSolid="@color/common_item_text_blue_normal"
+        tl:pressedSolid="@color/btn_blue_pressed"
+        tl:roundButtonRadius="10px" />
+
+
+</LinearLayout>

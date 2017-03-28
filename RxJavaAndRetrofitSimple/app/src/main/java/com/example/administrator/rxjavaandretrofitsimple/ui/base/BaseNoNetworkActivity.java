@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.qzy.library.statusbar.StatusBarUtil;
 import com.bigkoo.svprogresshud.SVProgressHUD;
 import com.bigkoo.svprogresshud.listener.OnDismissListener;
 import com.example.administrator.rxjavaandretrofitsimple.R;
@@ -29,7 +30,6 @@ import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.statusBar.StatusBarJobber;
 import com.example.administrator.rxjavaandretrofitsimple.util.widget.ToolbarWrapper;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +56,7 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         AppManager.getInstance().addActivity(this);
         setContentView(R.layout.activity_base);
+        setStatusBar();
         initStatusLayout();
         if (butterKnifeEnabled()) {
             ButterKnife.bind(this);
@@ -65,14 +66,21 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
             configToolbar();
         }
         initTitleBar();
-        if (lightStatusBarMode()) {
+        /*if (lightStatusBarMode()) {
             if (StatusBarJobber.switchStatusBarElementTo(this, true)) {
                 StatusBarJobber.setTranslucentStatusColor(this, R.color.white);
             }
-        }
+        }*/
         onViewCreated(savedInstanceState);
     }
 
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.soil_yellow));
+    }
+
+    /**
+     * 初始化状态切换布局
+     */
     protected void initStatusLayout(){
         LinearLayout mainLinearLayout = (LinearLayout) findViewById(R.id.main_rl);
         statusLayoutManager = StatusLayoutManager.newBuilder(this)
@@ -99,6 +107,8 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
         mainLinearLayout.addView(statusLayoutManager.getRootLayout(), 1);
         statusLayoutManager.showContent();
     }
+
+
 
 
     protected void configToolbar() {

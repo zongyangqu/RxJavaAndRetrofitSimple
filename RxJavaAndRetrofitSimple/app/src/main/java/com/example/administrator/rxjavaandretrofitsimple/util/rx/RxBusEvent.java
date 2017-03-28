@@ -11,18 +11,18 @@ import rx.subjects.Subject;
 
 /**
  * 作者：quzongyang
- * <p>
+ *
  * 创建时间：2017/3/20
- * <p>
+ *
  * 类描述：
  */
 
-public class RxBus {
+public class RxBusEvent {
 
     private Subject<Object, Object> bus = new SerializedSubject(PublishSubject.create());
     private Map<Class<?>, Object> stickyEvents = new ConcurrentHashMap<>();
 
-    private RxBus() {
+    private RxBusEvent() {
 
     }
 
@@ -54,10 +54,10 @@ public class RxBus {
     }
 
     private static final class Holder {
-        private static final RxBus BUS = new RxBus();
+        private static final RxBusEvent BUS = new RxBusEvent();
     }
 
-    private static RxBus inst() {
+    private static RxBusEvent inst() {
         return Holder.BUS;
     }
 

@@ -2,6 +2,8 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -13,6 +15,10 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkAc
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 
 import butterknife.Bind;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * 作者：quzongyang
@@ -41,8 +47,10 @@ public class HistoryTodayActivity extends BaseNoNetworkActivity {
         return R.layout.activity_history_today;
     }
 
+
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
+
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

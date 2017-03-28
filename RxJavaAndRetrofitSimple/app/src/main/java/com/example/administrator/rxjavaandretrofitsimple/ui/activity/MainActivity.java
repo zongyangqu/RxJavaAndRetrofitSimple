@@ -11,18 +11,21 @@ import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
+import com.example.administrator.rxjavaandretrofitsimple.bean.SplashAdvEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.TabEntity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.NewsFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.OthersFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.WeChatFragment;
+import com.example.administrator.rxjavaandretrofitsimple.util.DownLoaderAsyncTask;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -50,6 +53,8 @@ public class MainActivity extends BaseNoNetworkActivity {
     private VideoFragment videoFragment;
     private OthersFragment othersFragment;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private List<SplashAdvEntity> splashAdvEntities;//启动页广告集合
+    private DownLoaderAsyncTask downLoaderAsyncTask;
     /**
      * 入口
      * @param activity
@@ -71,6 +76,15 @@ public class MainActivity extends BaseNoNetworkActivity {
         initTitleBar();
         initFragment(savedInstanceState);
         initTab();
+        initAdvData();
+    }
+
+
+    public void initAdvData(){
+        splashAdvEntities = new ArrayList<SplashAdvEntity>();
+        splashAdvEntities.add(new SplashAdvEntity("1","https://mall.skuyun.com/jrapi?ut=2&oid=18800001111&key=123456qq","http://www.uc.cn/uploads/allimg/140717/25-140GGU9300-L.jpg","111"));
+        downLoaderAsyncTask=new DownLoaderAsyncTask();
+        downLoaderAsyncTask.execute(splashAdvEntities);
     }
 
     @Override

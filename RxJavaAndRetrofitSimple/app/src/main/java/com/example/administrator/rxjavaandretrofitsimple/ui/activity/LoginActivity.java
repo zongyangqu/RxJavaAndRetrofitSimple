@@ -1,119 +1,116 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
+
 import android.app.Activity;
-import android.os.Bundle;
+import android.content.Intent;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.TextView;
+
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.bean.LoginEntity;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.model.LoginModel;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.LoginPresenter;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.view.LoginView;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
+
+
+import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.LoginPresenter;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.LoginView;
 import com.example.administrator.rxjavaandretrofitsimple.rxbus.RxBus;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpStatusActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
-import com.example.administrator.rxjavaandretrofitsimple.util.ConfigUtil;
-import com.example.administrator.rxjavaandretrofitsimple.util.db.UserDao;
+import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
+
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+import greendao.UserDB;
+import greendao.db.User;
 
 /**
- * 类描述：模拟登陆功能
+ * 类描述：模拟登陆功能(仅使用数据存储数据)
  * 创建人：quzongyang
  * 创建时间：2016/10/11. 19:39
  * 版本：
  */
-public class LoginActivity extends Activity implements LoginView,View.OnClickListener{
+public class LoginActivity extends BaseStatusMvpStatusActivity<LoginView, LoginPresenter> implements LoginView{
 
-    private Button btn_login;
-    private Button btn_delete_user;
-    private LinearLayout ll_state_loading;
-    private LoginPresenter loginPresenter;
-    private UserDao userDao;
-    private LoginEntity.UserBean userBean;
+    @Bind(R.id.tvLoginRegister)
+    TextView tvLoginRegister;
+    @Bind(R.id.et_login_user)
+    AppCompatEditText et_login_user;
+    @Bind(R.id.et_login_pwd)
+    AppCompatEditText et_login_pwd;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initView();
-        init();
-        setListener();
+
+    /**
+     * 入口
+     * @param activity
+     */
+    public static void startAction(Activity activity){
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in,
+                R.anim.fade_out);
     }
 
-    public void initView(){
-        btn_login = (Button) findViewById(R.id.btn_login);
-        btn_delete_user = (Button) findViewById(R.id.btn_delete_user);
-        ll_state_loading = (LinearLayout) findViewById(R.id.ll_state_loading);
+    @Override
+    protected void onViewCreated() {
     }
 
     /**
-     * 初始化MVP
+     * 注册成功回调
+     * @param userPhone
+     * @param password
      */
-    public void init(){
-        userDao = UserDao.getInstance(getActivity());
-        loginPresenter = new LoginPresenter();
-        loginPresenter.attachModel(new LoginModel());
-        loginPresenter.attachView(this);
-    }
-    public void setListener(){
-        btn_login.setOnClickListener(this);
-        btn_delete_user.setOnClickListener(this);
+    @Override
+    public void registerSuccess(String userPhone, String password) {
+        et_login_user.setText(userPhone);
+        et_login_pwd.setText(password);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    @OnClick({R.id.tvLoginRegister,R.id.btn_login})
+    public void onViewClick(View view){
+        switch (view.getId()){
             case R.id.btn_login:
-                userBean = userDao.loadUserEntity();
-                if(userBean == null){
-                    loginPresenter.login("1ebe5a3e07418853d086901a8cc44763","220.194.43.29");
+                String phone = et_login_user.getText().toString().trim();
+                String psw = et_login_pwd.getText().toString().trim();
+                if(TextUtils.isEmpty(phone) || TextUtils.isEmpty(psw)){
+                    AbToastUtil.showToast(visitActivity(),"请输入手机号和密码");
                 }else{
-                    AbToastUtil.showToast(getActivity(),"已经登陆过了");
+                    User user = UserDB.queryUser(phone);
+                    if(null == user){
+                        AbToastUtil.showToast(visitActivity(),"登录失败");
+                    }else {
+                        RxBus.get().post(LocalConstant.LOGIN_SUCCESS,user);
+                        AbToastUtil.showToast(visitActivity(),"登录成功");
+                        finish();
+                    }
                 }
                 break;
-            case R.id.btn_delete_user://删除用户信息
-                userDao.removeUserEntity();
-                RxBus.get().post(ConfigUtil.USERINFO, ConfigUtil.USEREXIT);//发送清除用户信息的监听通知RxBus处理
-                finish();
+            case R.id.tvLoginRegister:
+                RegisterActivity.startAction(visitActivity());
                 break;
         }
     }
 
     @Override
-    public void updateView(LoginEntity loginEntity) {
-        if (loginEntity != null) {
-            if(loginEntity.getResultcode() == 200){
-                RxBus.get().post(ConfigUtil.USERINFO, ConfigUtil.USERLOGIN);//发送登陆的监听通知RxBus处理
-                AbToastUtil.showToast(getActivity(),"登陆成功");
-                finish();
-            }else{
-                AbToastUtil.showToast(getActivity(),loginEntity.getReason());
-            }
-        }
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
     @Override
-    public void displayEmptyPage() {
+    protected void initTitleBar() {
+        setTitleCenter("登录");
+    }
+
+    @Override
+    protected void onRetryClick() {
 
     }
 
     @Override
-    public void hideLoadingView() {
-        ll_state_loading.setVisibility(View.GONE);
+    protected LoginPresenter createPresenter() {
+        return new LoginPresenter();
     }
 
-    @Override
-    public void startLoadingView() {
-        ll_state_loading.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showError(String errMsg) {
-        AbToastUtil.showToast(getActivity(),errMsg);
-    }
-
-    public Activity getActivity(){
-        return this;
-    }
 }

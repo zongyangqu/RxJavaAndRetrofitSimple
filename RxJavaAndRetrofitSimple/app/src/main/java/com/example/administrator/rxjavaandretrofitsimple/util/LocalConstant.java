@@ -95,4 +95,10 @@ public class LocalConstant {
      */
     public static final String LOGIN_DESC = "请先登录";
 
+
+    /**
+     * 登录成功标识
+     */
+    public static final String LOGIN_SUCCESS= "LOGIN_SUCCESS";
+
 }

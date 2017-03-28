@@ -12,11 +12,22 @@
         android:src="@mipmap/default_head_icon"/>
 
     <TextView
+        android:id="@+id/tvLogin"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/soil_yellow"
+        android:text="登录"/>
+
+    <TextView
         android:id="@+id/tvJoke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="笑话"/>

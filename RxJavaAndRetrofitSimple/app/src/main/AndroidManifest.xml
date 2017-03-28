@@ -57,6 +57,11 @@
         <activity
             android:name=".ui.activity.HistoryTodayActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.SplashAdvertActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
