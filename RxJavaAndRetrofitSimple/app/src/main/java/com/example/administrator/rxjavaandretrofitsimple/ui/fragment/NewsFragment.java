@@ -6,18 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
+import com.android.qzy.library.flycotablelayout.SlidingTabLayout;
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.NewsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsView;
-import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.NewsAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseMvpLazyFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
-import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

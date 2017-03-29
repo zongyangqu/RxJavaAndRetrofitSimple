@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.widget.FrameLayout;
 
+
+import com.android.qzy.library.flycotablelayout.CommonTabLayout;
+import com.android.qzy.library.flycotablelayout.listener.CustomTabEntity;
+import com.android.qzy.library.flycotablelayout.listener.OnTabSelectListener;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.SplashAdvEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.TabEntity;
@@ -19,10 +21,7 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.OthersFragm
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.WeChatFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.DownLoaderAsyncTask;
-import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
-import com.flyco.tablayout.listener.OnTabSelectListener;
+
 
 import java.util.ArrayList;
 import java.util.List;

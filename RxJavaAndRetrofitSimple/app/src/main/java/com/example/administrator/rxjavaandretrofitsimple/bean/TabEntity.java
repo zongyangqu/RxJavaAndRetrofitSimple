@@ -1,13 +1,13 @@
 package com.example.administrator.rxjavaandretrofitsimple.bean;
 
-import com.flyco.tablayout.listener.CustomTabEntity;
+import com.android.qzy.library.flycotablelayout.listener.CustomTabEntity;
 
 /**
  * 作者：quzongyang
  *
  * 创建时间：2017/1/18
  *
- * 类描述：首页底部TA*/
+ * 类描述：首页底部*/
 
 public class TabEntity implements CustomTabEntity {
     public String title;
