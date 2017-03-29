@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.ui;
+package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -15,14 +15,13 @@ import android.widget.TextView;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.bean.SplashAdvEntity;
-import com.example.administrator.rxjavaandretrofitsimple.ui.activity.MainActivity;
-import com.example.administrator.rxjavaandretrofitsimple.ui.activity.SplashAdvertActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.xmlparse.PullSplashAdvParser;
 import com.example.administrator.rxjavaandretrofitsimple.util.xmlparse.SplashAdvParser;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 作者：quzongyang
@@ -112,8 +111,8 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
             if (!splashAdvList.isEmpty()) {
-                //int index = new Random().nextInt(splashAdvList.size());
-                splashAdvShowEntity = splashAdvList.get(0);
+                int index = new Random().nextInt(splashAdvList.size());
+                splashAdvShowEntity = splashAdvList.get(index);
             }
         } catch (Exception e) {
         }

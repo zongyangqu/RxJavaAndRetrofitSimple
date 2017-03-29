@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoLinearLayout>

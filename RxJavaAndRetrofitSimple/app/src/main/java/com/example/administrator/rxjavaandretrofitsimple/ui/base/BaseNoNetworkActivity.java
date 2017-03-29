@@ -1,41 +1,23 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.base;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.android.qzy.library.statusbar.StatusBarUtil;
-import com.bigkoo.svprogresshud.SVProgressHUD;
-import com.bigkoo.svprogresshud.listener.OnDismissListener;
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.listener.OnActivitySelectListenner;
-import com.example.administrator.rxjavaandretrofitsimple.listener.OnDialogDismissListener;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnRetryListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnShowHideViewListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.StatusLayoutManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
-import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
-import com.example.administrator.rxjavaandretrofitsimple.util.statusBar.StatusBarJobber;
 import com.example.administrator.rxjavaandretrofitsimple.util.widget.ToolbarWrapper;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.ButterKnife;
-import rx.subscriptions.CompositeSubscription;
+
 
 /**
  * 作者：quzongyang
@@ -45,7 +27,7 @@ import rx.subscriptions.CompositeSubscription;
  * 类描述：无网络请求的Activity基类
  */
 
-public abstract class BaseNoNetworkActivity extends AppCompatActivity implements OnActivitySelectListenner {
+public abstract class BaseNoNetworkActivity extends AppCompatActivity {
 
     protected ToolbarWrapper toolbar;
     protected StatusLayoutManager statusLayoutManager;
@@ -66,16 +48,11 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
             configToolbar();
         }
         initTitleBar();
-        /*if (lightStatusBarMode()) {
-            if (StatusBarJobber.switchStatusBarElementTo(this, true)) {
-                StatusBarJobber.setTranslucentStatusColor(this, R.color.white);
-            }
-        }*/
         onViewCreated(savedInstanceState);
     }
 
     protected void setStatusBar() {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.soil_yellow));
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.soil_yellow),0);
     }
 
     /**
@@ -163,30 +140,6 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity implements
         super.onDestroy();
     }
 
-    @Override
-    public void showErrorMessageg(String error) {
-
-    }
-
-    @Override
-    public void showLoginDialog(String message) {
-
-    }
-
-    @Override
-    public void showSuccessMessage(String msg) {
-
-    }
-
-    @Override
-    public void showInfoMessage(String msg) {
-
-    }
-
-    @Override
-    public void dismissloading() {
-
-    }
 
     /**
      * 设置中间标题文字颜色

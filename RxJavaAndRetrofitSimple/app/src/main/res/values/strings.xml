@@ -2,4 +2,14 @@
     <string name="app_name">RxJavaAndRetrofitSimple</string>
     <color name="layout_background">#f0f0f0</color>
     <string name="text_login">登录</string>
+
+    <string-array name="tab_news_title">
+        <item>头条</item>
+        <item>社会</item>
+        <item>体育</item>
+        <item>国内</item>
+        <item>国际</item>
+        <item>娱乐</item>
+        <item>军事</item>
+    </string-array>
 </resources>

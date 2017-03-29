@@ -4,17 +4,6 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-    //greendao配置
-    greendao {
-        /**GreenDao实体类包文件夹*/
-        targetGenDir 'src/main/java'
-
-        /**版本号，升级时可配置*/
-        schemaVersion 1
-
-        /** greenDao输出dao数据库操作实体类文件夹*/
-        daoPackage 'greendao'
-    }
     defaultConfig {
         applicationId "com.example.administrator.rxjavaandretrofitsimple"
         minSdkVersion 15
@@ -27,6 +16,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    //greendao配置
+    greendao {
+        /**GreenDao实体类包文件夹*/
+        targetGenDir 'src/main/java'
+
+        /**版本号，升级时可配置*/
+        schemaVersion 1
+
+        /** greenDao输出dao数据库操作实体类文件夹*/
+        daoPackage 'greendao'
     }
 }
 

@@ -41,6 +41,11 @@ public class RequestClient {
                 .compose(RxTransformer.<NewsEntity>ioToUI());
     }
 
+    public static Observable<NewsEntity> getNewsClassify(String requestType,String cacheControl) {
+        return ApiManager.getDefault(HostType.JUHE_DATE_NET_INTERFACE).getNewsClassify(requestType,cacheControl)
+                .compose(RxTransformer.<NewsEntity>ioToUI());
+    }
+
 
 
 }

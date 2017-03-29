@@ -5,13 +5,12 @@ import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.Bas
 
 /**
  * 作者：quzongyang
- *
- * 创建时间：2017/3/22
- *
+
+ * 创建时间：2017/3/29
+
  * 类描述：
  */
 
-public interface NewsView extends BaseStatusView{
-
-
+public interface NewsDetailsView extends BaseStatusView{
+    void provideNewsInfo(NewsEntity.ResultBean response);
 }

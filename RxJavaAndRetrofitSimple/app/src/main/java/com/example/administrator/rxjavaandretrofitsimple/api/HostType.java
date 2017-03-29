@@ -2,10 +2,10 @@ package com.example.administrator.rxjavaandretrofitsimple.api;
 
 /**
  * 作者：quzongyang
- * <p>
+ *
  * 创建时间：2017/1/19
- * <p>
- * 类描述：
+ *
+ * 类描述：接口API地址类型
  */
 
 public class HostType {

@@ -1,18 +1,10 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
-import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
 import com.example.administrator.rxjavaandretrofitsimple.bean.LoginEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.LoginModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
-import com.example.administrator.rxjavaandretrofitsimple.util.db.UserDao;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * 类描述：模拟登陆
