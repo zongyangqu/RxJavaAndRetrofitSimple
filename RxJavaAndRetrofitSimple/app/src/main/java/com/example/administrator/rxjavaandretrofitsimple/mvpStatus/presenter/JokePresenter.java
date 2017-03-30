@@ -1,7 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter;
+
 import com.example.administrator.rxjavaandretrofitsimple.api.RequestClient;
 import com.example.administrator.rxjavaandretrofitsimple.api.SimpleResponseObserver;
-import com.example.administrator.rxjavaandretrofitsimple.api.params.JokeParams;
 import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.base.BaseStatusPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.JokeView;
@@ -17,17 +17,18 @@ import java.util.Map;
  * 类描述：
  */
 
-public class JokePresenter extends BaseStatusPresenter<JokeView>{
+public class JokePresenter extends BaseStatusPresenter<JokeView> {
 
     /**
      * 获取笑话信息
+     *
      * @param page
      * @param pagesize
      * @param key
      */
-    public void getJokeInfo(int page, int pagesize,String key) {
+    public void getJokeInfo(int page, int pagesize, String key) {
         getView().processingDialog();
-        Map<String, String> params = NetParams.getInstance().getJoke(page+"",pagesize+"",key);
+        Map<String, String> params = NetParams.getInstance().getJoke(page + "", pagesize + "", key);
         addSubscription(RequestClient.getJokeInfo(params)
                 .subscribe(new SimpleResponseObserver<JokeResponse>() {
                     @Override
@@ -38,12 +39,24 @@ public class JokePresenter extends BaseStatusPresenter<JokeView>{
 
                     @Override
                     public void onResponse(JokeResponse response) {
-                        getView().provideJokeInfo(response.result);
+                        if(response.result.data.isEmpty()){
+                            getView().displayEmptyPage();
+                        }else{
+                            getView().provideJokeInfo(response.result);
+                        }
+
+                    }
+
+                    @Override
+                    public void onResponseFail(String s) {
+                        super.onResponseFail(s);
+                        getView().displayErrorPage();
                     }
 
                     @Override
                     public void onResponseStatusFail(String s, String s1) {
                         getView().dismissProcessingDialog();
+                        getView().displayErrorPage();
                     }
                 }));
     }

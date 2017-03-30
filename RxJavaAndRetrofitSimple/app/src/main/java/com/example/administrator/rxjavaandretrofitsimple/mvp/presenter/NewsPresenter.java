@@ -1,14 +1,12 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
-import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
 import com.example.administrator.rxjavaandretrofitsimple.api.RxNetworkResponseObserver;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.NewsModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.NewsView;
 
 import rx.Observable;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -32,8 +30,8 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
      */
     public void getNews() {
         getView().startLoadingView();
-        Observable<NewsEntity> codeEntityObservable = getModel().getNews();
-        RxNetworkResponseObserver<NewsEntity> subscriber = new RxNetworkResponseObserver<NewsEntity>() {
+        Observable<NewsResponse> codeEntityObservable = getModel().getNews();
+        RxNetworkResponseObserver<NewsResponse> subscriber = new RxNetworkResponseObserver<NewsResponse>() {
             @Override
             public void onBeforeResponseOperation() {
                 super.onBeforeResponseOperation();
@@ -46,7 +44,7 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
             }
 
             @Override
-            public void onResponse(NewsEntity result) {
+            public void onResponse(NewsResponse result) {
                 getView().updateView(result);
             }
 
@@ -55,9 +53,9 @@ public class NewsPresenter extends BasePresenter<NewsView, NewsModel> {
                 getView().showError(msg);
             }
         };
-        codeEntityObservable.doOnNext(new Action1<NewsEntity>() {
+        codeEntityObservable.doOnNext(new Action1<NewsResponse>() {
             @Override
-            public void call(NewsEntity entity) {
+            public void call(NewsResponse entity) {
 
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).doOnSubscribe(new Action0() {

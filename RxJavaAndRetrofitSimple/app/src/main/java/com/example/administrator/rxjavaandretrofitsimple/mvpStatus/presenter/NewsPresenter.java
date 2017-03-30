@@ -1,7 +1,4 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter;
-import com.example.administrator.rxjavaandretrofitsimple.api.RequestClient;
-import com.example.administrator.rxjavaandretrofitsimple.api.SimpleResponseObserver;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.base.BaseStatusPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsView;
 

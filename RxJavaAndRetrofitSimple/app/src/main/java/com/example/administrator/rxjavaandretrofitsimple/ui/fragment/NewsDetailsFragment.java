@@ -1,13 +1,12 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.NewsDetailsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsDetailsView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.NewsAdapter;
@@ -50,7 +49,7 @@ public class NewsDetailsFragment extends BaseMvpLazyFragment<NewsDetailsView,New
     }
 
     @Override
-    public void provideNewsInfo(NewsEntity.ResultBean response) {
+    public void provideNewsInfo(NewsResponse.ResultBean response) {
         statusLayoutManager.showContent();
         newsAdapter.setData(response.data);
     }

@@ -1,6 +1,5 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseStatusView;
 
 /**

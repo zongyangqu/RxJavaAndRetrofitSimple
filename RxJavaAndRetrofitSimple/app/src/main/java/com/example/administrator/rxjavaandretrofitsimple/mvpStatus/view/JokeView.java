@@ -1,6 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view;
 
 import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseRefreshableView;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseStatusView;
 
 /**
@@ -11,7 +12,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.Bas
  * 类描述：
  */
 
-public interface JokeView extends BaseStatusView{
+public interface JokeView extends BaseRefreshableView, BaseStatusView {
 
     void provideJokeInfo(JokeResponse.ResultBean response);
 }

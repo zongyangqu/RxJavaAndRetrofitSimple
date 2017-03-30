@@ -1,6 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.presenter;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
@@ -28,8 +28,8 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
      *@param isLoadMore  是否是上拉加载更多的请求
      */
     public void getWeChat(int pno, int ps, String key, final boolean isLoadMore) {
-        Observable<WeChatEntity> weChatObservable = getModel().getWeChat(String.valueOf(pno),String.valueOf(ps),key);
-        Subscriber<WeChatEntity> subscriber = new Subscriber<WeChatEntity>() {
+        Observable<WeChatResponse> weChatObservable = getModel().getWeChat(String.valueOf(pno),String.valueOf(ps),key);
+        Subscriber<WeChatResponse> subscriber = new Subscriber<WeChatResponse>() {
             @Override
             public void onCompleted() {
             }
@@ -41,7 +41,7 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
             }
 
             @Override
-            public void onNext(WeChatEntity result) {
+            public void onNext(WeChatResponse result) {
                 if(result.result.list.isEmpty()){
                     getView().displayEmptyPage();
                 }else{
@@ -49,9 +49,9 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
                 }
             }
         };
-        weChatObservable.doOnNext(new Action1<WeChatEntity>() {
+        weChatObservable.doOnNext(new Action1<WeChatResponse>() {
             @Override
-            public void call(WeChatEntity entity) {
+            public void call(WeChatResponse entity) {
 
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).doOnSubscribe(new Action0() {

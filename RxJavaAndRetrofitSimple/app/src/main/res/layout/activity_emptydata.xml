@@ -14,17 +14,17 @@
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_empty_child" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/icon_empty" />
 
         <TextView
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="您还没有数据"
-            android:textColor="@color/color999999"
+            android:text="暂无数据"
+            android:textColor="@color/color666666"
             android:textSize="@dimen/textSize16" />
     </LinearLayout>
     

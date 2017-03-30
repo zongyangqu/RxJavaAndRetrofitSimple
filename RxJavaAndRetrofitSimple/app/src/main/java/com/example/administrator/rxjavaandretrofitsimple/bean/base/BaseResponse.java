@@ -8,7 +8,7 @@ package com.example.administrator.rxjavaandretrofitsimple.bean.base;
  * 类描述：接口返回实体基类
  */
 
-public class BaseEntity{
+public class BaseResponse {
 
     public String reason;
     public String error_code;

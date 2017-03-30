@@ -1,6 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.bean;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseResponse;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * 类描述：微信精选
  */
 
-public class WeChatEntity extends BaseEntity{
+public class WeChatResponse extends BaseResponse {
 
     /**
      * reason : 请求成功

@@ -1,14 +1,11 @@
 package com.example.administrator.rxjavaandretrofitsimple.api;
 
-import com.example.administrator.rxjavaandretrofitsimple.api.params.JokeParams;
 import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.util.rx.RxTransformer;
 
 import java.util.Map;
 
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 import rx.Observable;
 
 /**
@@ -36,14 +33,14 @@ public class RequestClient {
                 .compose(RxTransformer.<JokeResponse>ioToUI());
     }
 
-    public static Observable<NewsEntity> getNews(String cacheControl) {
+    public static Observable<NewsResponse> getNews(String cacheControl) {
         return ApiManager.getDefault(HostType.JUHE_DATE_NET_INTERFACE).getNews(cacheControl)
-                .compose(RxTransformer.<NewsEntity>ioToUI());
+                .compose(RxTransformer.<NewsResponse>ioToUI());
     }
 
-    public static Observable<NewsEntity> getNewsClassify(String requestType,String cacheControl) {
+    public static Observable<NewsResponse> getNewsClassify(String requestType, String cacheControl) {
         return ApiManager.getDefault(HostType.JUHE_DATE_NET_INTERFACE).getNewsClassify(requestType,cacheControl)
-                .compose(RxTransformer.<NewsEntity>ioToUI());
+                .compose(RxTransformer.<NewsResponse>ioToUI());
     }
 
 

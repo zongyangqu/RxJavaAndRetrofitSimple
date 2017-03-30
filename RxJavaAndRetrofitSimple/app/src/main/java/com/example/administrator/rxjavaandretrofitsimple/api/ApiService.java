@@ -1,19 +1,16 @@
 package com.example.administrator.rxjavaandretrofitsimple.api;
 
-import com.example.administrator.rxjavaandretrofitsimple.api.params.JokeParams;
 import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
-import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
 
 import java.util.Map;
 
-import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -33,7 +30,7 @@ public interface ApiService {
      * @return
      */
     @GET("toutiao/index?key=761fc4e2bffe6ed2997b3626a642c3e0")
-    Observable<NewsEntity> getNewsClassify(@Query("type")String requestType, @Header("Cache-Control") String cacheControl);
+    Observable<NewsResponse> getNewsClassify(@Query("type")String requestType, @Header("Cache-Control") String cacheControl);
 
     /**
      * 获取头条新闻列表
@@ -41,14 +38,14 @@ public interface ApiService {
      * @return
      */
     @GET("toutiao/index?type=top&key=761fc4e2bffe6ed2997b3626a642c3e0")
-    Observable<NewsEntity> getNews(@Header("Cache-Control") String cacheControl);
+    Observable<NewsResponse> getNews(@Header("Cache-Control") String cacheControl);
 
     /**
      * 获取微信精选列表
      */
     @FormUrlEncoded
     @POST("weixin/query")
-    Observable<WeChatEntity> getWeChat(@FieldMap Map<String, String> params);
+    Observable<WeChatResponse> getWeChat(@FieldMap Map<String, String> params);
 
     /**
      * 获取微信精选列表

@@ -1,6 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.view;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
 
 /**
@@ -11,7 +11,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.view.base.BaseView;
  * 类描述：新闻视图层
  */
 
-public interface NewsView extends BaseView<NewsEntity> {
+public interface NewsView extends BaseView<NewsResponse> {
 
 
 }

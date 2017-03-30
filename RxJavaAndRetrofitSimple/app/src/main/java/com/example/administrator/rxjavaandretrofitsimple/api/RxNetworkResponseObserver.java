@@ -2,7 +2,7 @@ package com.example.administrator.rxjavaandretrofitsimple.api;
 
 import com.example.administrator.rxjavaandretrofitsimple.api.exception.ResponseExceptionJobber;
 import com.example.administrator.rxjavaandretrofitsimple.api.exception.ResponseStatusFailException;
-import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseResponse;
 
 import rx.Observer;
 import rx.Subscriber;
@@ -24,10 +24,10 @@ public abstract class RxNetworkResponseObserver<T> extends Subscriber<T> {
 
     private void checkResponseStatus(Object response){
         //// TODO: 2017/1/22 校验接口返回码  想做什么做什么
-        if (response instanceof BaseEntity) {
-            if ("10001".equals(((BaseEntity) response).error_code)) {//请求KEY错误
+        if (response instanceof BaseResponse) {
+            if ("10001".equals(((BaseResponse) response).error_code)) {//请求KEY错误
 
-            } else if ("0".equals(((BaseEntity) response).error_code)) {//请求正确
+            } else if ("0".equals(((BaseResponse) response).error_code)) {//请求正确
 
             }
         }
@@ -65,8 +65,8 @@ public abstract class RxNetworkResponseObserver<T> extends Subscriber<T> {
             onResponse(t);
         } catch (ResponseStatusFailException re) {
             onBeforeResponseOperation();
-            onResponseStatusFail(((BaseEntity) t).error_code, ((BaseEntity) t).reason);
-            onResponseStatusFail(((BaseEntity) t).error_code, t);
+            onResponseStatusFail(((BaseResponse) t).error_code, ((BaseResponse) t).reason);
+            onResponseStatusFail(((BaseResponse) t).error_code, t);
         } catch (Exception e) {
             onResponseOptionFail();
         } finally {

@@ -23,9 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="@dimen/size_toolbar_title"
         android:maxWidth="@dimen/max_width_toolbar_title"
         android:singleLine="true"
+        android:textSize="@dimen/size_toolbar_title"
         tools:text="标题" />
 
     <FrameLayout

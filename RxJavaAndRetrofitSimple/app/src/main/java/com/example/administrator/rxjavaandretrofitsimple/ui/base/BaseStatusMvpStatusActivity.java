@@ -198,7 +198,7 @@ public abstract class BaseStatusMvpStatusActivity<V extends BaseStatusView, P ex
      * 是否显示标题栏
      * @param isShow
      */
-    protected void ShowTitle(boolean isShow){
+    protected void showTitle(boolean isShow){
         if(isShow){
             toolbar.setVisibility(View.VISIBLE);
         }else{

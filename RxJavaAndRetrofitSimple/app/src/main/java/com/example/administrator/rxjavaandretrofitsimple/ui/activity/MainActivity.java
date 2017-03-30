@@ -7,12 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 
 
 import com.android.qzy.library.flycotablelayout.CommonTabLayout;
 import com.android.qzy.library.flycotablelayout.listener.CustomTabEntity;
 import com.android.qzy.library.flycotablelayout.listener.OnTabSelectListener;
 import com.example.administrator.rxjavaandretrofitsimple.R;
+import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
 import com.example.administrator.rxjavaandretrofitsimple.bean.SplashAdvEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.TabEntity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkActivity;
@@ -20,6 +22,8 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.NewsFragmen
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.OthersFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.WeChatFragment;
+import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.DownLoaderAsyncTask;
 
 
@@ -180,5 +184,28 @@ public class MainActivity extends BaseNoNetworkActivity {
     protected Activity getActivity() {
         return this;
     }
+
+    /**
+     * 双击返回键退出(利用计算时间差实现0
+     */
+    private long exitTime = 0;
+    public void ExitApp() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            AbToastUtil.showToast(getActivity(), getString(R.string.toast_exit));
+            exitTime = System.currentTimeMillis();
+        } else {
+            AppManager.getInstance().AppExit(BaseApplication.getInstance());
+            getActivity().finish();
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ExitApp();
+        }
+        return false;
+    }
+
 
 }

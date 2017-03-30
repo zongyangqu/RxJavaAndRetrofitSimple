@@ -12,15 +12,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@mipmap/ic_network_error" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Oops，遇到问题了，刷新试试"
+            android:text="^_^网络出错了，刷新试试"
             android:textColor="@color/color999999"
             android:textSize="@dimen/textSize16" />
 

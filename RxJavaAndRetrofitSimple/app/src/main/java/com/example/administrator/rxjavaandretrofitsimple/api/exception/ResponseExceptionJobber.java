@@ -1,10 +1,9 @@
 package com.example.administrator.rxjavaandretrofitsimple.api.exception;
 
-import android.text.TextUtils;
 import android.util.MalformedJsonException;
 
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
-import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseResponse;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbAppUtil;
 
 import java.net.ConnectException;
@@ -47,8 +46,8 @@ public class ResponseExceptionJobber {
      * @param response
      */
     public static void check(Object response) throws ResponseStatusFailException {
-        if (response instanceof BaseEntity) {
-            if(!"0".equals(((BaseEntity) response).error_code)){
+        if (response instanceof BaseResponse) {
+            if(!"0".equals(((BaseResponse) response).error_code)){
                 throw new ResponseStatusFailException();
             }
         }

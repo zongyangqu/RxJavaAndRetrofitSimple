@@ -1,17 +1,17 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.SyncStateContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.android.qzy.library.refreshview.SpringView;
+import com.android.qzy.library.refreshview.container.MeituanFooter;
+import com.android.qzy.library.refreshview.container.MeituanHeader;
 import com.android.qzy.library.refreshview.container.RotationFooter;
 import com.android.qzy.library.refreshview.container.RotationHeader;
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.WeChatPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
@@ -20,7 +20,6 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.WeChatAdapte
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
-import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
 
 import butterknife.Bind;
 
@@ -58,6 +57,8 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
         rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WeChatAdapter(getActivity());
         rcv_weChat.setAdapter(adapter);
+        View headerView = View.inflate(getActivity(),R.layout.item_wechat_head,null);
+        adapter.addHeaderView(headerView);
         _presenter = new WeChatPresenter();
         _presenter.attachView(this);
         _presenter.attachModel(new WeChatModel());
@@ -65,6 +66,7 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
     }
 
     public void setListener(){
+        springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -81,8 +83,10 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
                 }
             }
         });
-        springView.setHeader(new RotationHeader(getActivity()));
-        springView.setFooter(new RotationFooter(getActivity()));
+        springView.setHeader(new MeituanHeader(getActivity()));
+        springView.setFooter(new MeituanFooter(getActivity()));
+//        springView.setHeader(new RotationHeader(getActivity()));
+//        springView.setFooter(new RotationFooter(getActivity()));
     }
 
     @Override
@@ -107,7 +111,7 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
     }
 
     @Override
-    public void provideWeChat(WeChatEntity response, boolean isLoadMore) {
+    public void provideWeChat(WeChatResponse response, boolean isLoadMore) {
         springView.onFinishFreshAndLoad();
         statusLayoutManager.showContent();
         total_page = response.result.totalPage;
@@ -127,18 +131,16 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
 
 
     @Override
-    public void updateView(WeChatEntity response) {
+    public void updateView(WeChatResponse response) {
     }
 
     @Override
     public void hideLoadingView() {
         springView.onFinishFreshAndLoad();
-        //ProgressDialogUtils.dismiss();
     }
 
     @Override
     public void startLoadingView() {
-        //ProgressDialogUtils.show(getActivity());
     }
 
     @Override

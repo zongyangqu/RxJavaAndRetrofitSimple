@@ -2,6 +2,7 @@
     <string name="app_name">RxJavaAndRetrofitSimple</string>
     <color name="layout_background">#f0f0f0</color>
     <string name="text_login">登录</string>
+    <string name="toast_exit">再按一次返回键退出应用</string>
 
     <string-array name="tab_news_title">
         <item>头条</item>

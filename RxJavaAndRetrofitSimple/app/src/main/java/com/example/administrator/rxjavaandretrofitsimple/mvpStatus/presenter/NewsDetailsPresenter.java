@@ -2,10 +2,9 @@ package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter;
 
 import com.example.administrator.rxjavaandretrofitsimple.api.RequestClient;
 import com.example.administrator.rxjavaandretrofitsimple.api.SimpleResponseObserver;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.base.BaseStatusPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsDetailsView;
-import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsView;
 
 /**
  * 作者：quzongyang
@@ -24,7 +23,7 @@ public class NewsDetailsPresenter extends BaseStatusPresenter<NewsDetailsView> {
     public void getNewsInfo( String requestType,String cacheControl) {
         getView().processingDialog();
         addSubscription(RequestClient.getNewsClassify(requestType,cacheControl)
-                .subscribe(new SimpleResponseObserver<NewsEntity>() {
+                .subscribe(new SimpleResponseObserver<NewsResponse>() {
                     @Override
                     public void onBeforeResponseOperation() {
                         super.onBeforeResponseOperation();
@@ -32,7 +31,7 @@ public class NewsDetailsPresenter extends BaseStatusPresenter<NewsDetailsView> {
                     }
 
                     @Override
-                    public void onResponse(NewsEntity response) {
+                    public void onResponse(NewsResponse response) {
                         getView().provideNewsInfo(response.result);
                     }
 

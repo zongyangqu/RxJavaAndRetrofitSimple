@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.ui.holder.NewsHolder;
 
 import java.util.ArrayList;
@@ -24,12 +24,12 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
-    private List<NewsEntity.ResultBean.DataBean> newsList = new ArrayList<NewsEntity.ResultBean.DataBean>();
+    private List<NewsResponse.ResultBean.DataBean> newsList = new ArrayList<NewsResponse.ResultBean.DataBean>();
 
     public NewsAdapter(Context context){
         this.context = context;
     }
-    public void setData(List<NewsEntity.ResultBean.DataBean> newsList){
+    public void setData(List<NewsResponse.ResultBean.DataBean> newsList){
         this.newsList = newsList;
         notifyDataSetChanged();
     }
@@ -40,7 +40,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        NewsEntity.ResultBean.DataBean news = newsList.get(position);
+        NewsResponse.ResultBean.DataBean news = newsList.get(position);
         NewsHolder newsHolder = ((NewsHolder) holder);
         newsHolder.tv_news_date.setText(news.date);
         newsHolder.tv_news_title.setText(news.title);

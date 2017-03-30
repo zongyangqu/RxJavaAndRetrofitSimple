@@ -7,7 +7,8 @@
         android:id="@+id/iv_wechat_img"
         android:layout_width="640px"
         android:layout_height="360px"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/tv_wechat_title"
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/text_dark_gary"
         android:maxLines="2"
+        android:text="sdsd"
         android:ellipsize="end"/>
 
 </com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoLinearLayout>

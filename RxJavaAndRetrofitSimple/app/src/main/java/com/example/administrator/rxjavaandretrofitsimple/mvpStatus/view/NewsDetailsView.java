@@ -1,6 +1,6 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view;
 
-import com.example.administrator.rxjavaandretrofitsimple.bean.NewsEntity;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseStatusView;
 
 /**
@@ -12,5 +12,5 @@ import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.Bas
  */
 
 public interface NewsDetailsView extends BaseStatusView{
-    void provideNewsInfo(NewsEntity.ResultBean response);
+    void provideNewsInfo(NewsResponse.ResultBean response);
 }
