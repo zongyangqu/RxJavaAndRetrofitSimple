@@ -3,6 +3,7 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,11 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
     private List<NewsResponse.ResultBean.DataBean> newsList = new ArrayList<NewsResponse.ResultBean.DataBean>();
+    OnNewsItemClickListener onNewsItemClickListener;
+
+    public void setOnNewsItemClickListener(OnNewsItemClickListener onNewsItemClickListener) {
+        this.onNewsItemClickListener = onNewsItemClickListener;
+    }
 
     public NewsAdapter(Context context){
         this.context = context;
@@ -40,15 +46,25 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        NewsResponse.ResultBean.DataBean news = newsList.get(position);
+        final NewsResponse.ResultBean.DataBean news = newsList.get(position);
         NewsHolder newsHolder = ((NewsHolder) holder);
         newsHolder.tv_news_date.setText(news.date);
         newsHolder.tv_news_title.setText(news.title);
         Glide.with(BaseApplication.getInstance()).load(news.thumbnail_pic_s).error(R.mipmap.ic_launcher).into(newsHolder.iv_news_img);
+        newsHolder.rlNewsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onNewsItemClickListener.onNewsClick(news);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return newsList.size();
+    }
+
+    public interface OnNewsItemClickListener{
+        void onNewsClick(NewsResponse.ResultBean.DataBean response);
     }
 }

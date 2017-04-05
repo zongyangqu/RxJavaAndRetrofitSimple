@@ -3,12 +3,14 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.webkit.WebViewClient;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.NewsDetailsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsDetailsView;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WebClientActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.NewsAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseMvpLazyFragment;
 
@@ -45,6 +47,12 @@ public class NewsDetailsFragment extends BaseMvpLazyFragment<NewsDetailsView,New
         rcv_news.setLayoutManager(new LinearLayoutManager(getActivity()));
         newsAdapter = new NewsAdapter(getActivity());
         rcv_news.setAdapter(newsAdapter);
+        newsAdapter.setOnNewsItemClickListener(new NewsAdapter.OnNewsItemClickListener() {
+            @Override
+            public void onNewsClick(NewsResponse.ResultBean.DataBean response) {
+                WebClientActivity.startFrom(visitActivity(),response.title,response.url);
+            }
+        });
         _presenter.getNewsInfo(requestType,ApiManager.getCacheControl());
     }
 
@@ -63,4 +71,6 @@ public class NewsDetailsFragment extends BaseMvpLazyFragment<NewsDetailsView,New
     protected void onRetryClick() {
 
     }
+
+
 }

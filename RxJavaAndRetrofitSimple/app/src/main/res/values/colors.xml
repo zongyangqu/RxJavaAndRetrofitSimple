@@ -227,5 +227,5 @@
     <color name="color_order_actions_button_disable">#cccccc</color>
     <color name="color_location_bg">#F0F0F0</color>
     <color name="details_red">#ff514c</color>
-
+    <color name="color_thin_divider">#eaeaea</color>
 </resources>

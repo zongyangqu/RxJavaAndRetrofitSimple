@@ -54,7 +54,6 @@ public class WeChatFragment extends BaseModelFragment implements WeChatView{
 
     public void initView(){
         rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WeChatAdapter(getActivity());
         rcv_weChat.setAdapter(adapter);
         View headerView = View.inflate(getActivity(),R.layout.item_wechat_head,null);

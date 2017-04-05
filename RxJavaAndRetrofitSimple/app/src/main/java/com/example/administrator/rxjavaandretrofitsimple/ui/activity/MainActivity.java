@@ -85,7 +85,6 @@ public class MainActivity extends BaseNoNetworkActivity {
 
     public void initAdvData(){
         splashAdvEntities = new ArrayList<SplashAdvEntity>();
-        splashAdvEntities.add(new SplashAdvEntity("1","https://www.baidu.com/","//http://pic.shijue.me/picurl/217a52f1165e41b3bb6c72224c367256_d---jpg?code=ed3d3255a2398fb2","111"));
         splashAdvEntities.add(new SplashAdvEntity("1","https://www.baidu.com/","http://www.uc.cn/uploads/allimg/140717/25-140GGU9300-L.jpg","111"));
         downLoaderAsyncTask=new DownLoaderAsyncTask();
         downLoaderAsyncTask.execute(splashAdvEntities);

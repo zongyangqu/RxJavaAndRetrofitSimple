@@ -67,9 +67,7 @@ public class ApiManager {
     private static final String CACHE_CONTROL_AGE = "max-age=0";
     //构造方法私有
     private ApiManager(int hostType) {
-        //开启Log
-        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         //缓存
         File cacheFile = new File(BaseApplication.getInstance().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
@@ -83,6 +81,10 @@ public class ApiManager {
                 return chain.proceed(build);
             }
         };
+
+        //开启Log
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)

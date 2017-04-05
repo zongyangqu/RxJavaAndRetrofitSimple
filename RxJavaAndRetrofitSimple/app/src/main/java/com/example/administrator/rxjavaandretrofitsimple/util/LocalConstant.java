@@ -27,6 +27,12 @@ public class LocalConstant {
     public static final String REQUESTENTERTAINMENTNEWS =  "yule";
     public static final String REQUESTMILITARYNEWS =  "junshi";
 
+
+
+    public static final String WEB_URL = "WEB_URL";
+    public static final String COVER_SITE_TITLE = "COVER_SITE_TITLE";
+    public static final String WEBVIEW_TITLE = "WEBVIEW_TITLE";
+
     /**
      * 登录成功标识
      */

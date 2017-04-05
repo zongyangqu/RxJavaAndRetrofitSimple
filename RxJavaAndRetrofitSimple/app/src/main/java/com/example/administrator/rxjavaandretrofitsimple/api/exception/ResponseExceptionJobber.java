@@ -5,6 +5,7 @@ import android.util.MalformedJsonException;
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
 import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseResponse;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbAppUtil;
+import com.example.administrator.rxjavaandretrofitsimple.util.NetConnectionUtils;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -54,7 +55,7 @@ public class ResponseExceptionJobber {
     }
 
     public static String analyze(Throwable e) {
-        if (!AbAppUtil.isNetworkAvailable(BaseApplication.getInstance())) {
+        if (!NetConnectionUtils.isNetConnected(BaseApplication.getInstance())) {
             return "当前网络不可用,请检查网络设置";
         } else if (e instanceof UnknownHostException) {
             return "网络错误,请重试";
