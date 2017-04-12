@@ -50,7 +50,7 @@ public class NewsDetailsFragment extends BaseMvpLazyFragment<NewsDetailsView,New
         newsAdapter.setOnNewsItemClickListener(new NewsAdapter.OnNewsItemClickListener() {
             @Override
             public void onNewsClick(NewsResponse.ResultBean.DataBean response) {
-                WebClientActivity.startFrom(visitActivity(),response.title,response.url);
+                WebClientActivity.startFrom(visitActivity(),response);
             }
         });
         _presenter.getNewsInfo(requestType,ApiManager.getCacheControl());

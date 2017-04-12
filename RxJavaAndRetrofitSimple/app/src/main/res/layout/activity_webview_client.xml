@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_location_bg"
@@ -25,6 +26,7 @@
         android:id="@+id/rlTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:clickable="true"
         android:background="@color/white"
         app:layout_behavior="@string/bye_burger_title_behavior">
 
@@ -56,6 +58,7 @@
         android:background="@color/soil_yellow"
         android:gravity="center_vertical"
         android:padding="10dp"
+        android:clickable="true"
         app:layout_behavior="@string/bye_burger_bottom_behavior">
 
         <ImageView
@@ -71,6 +74,7 @@
             android:src="@mipmap/right_arrow" />
 
         <ImageView
+            android:id="@+id/ivShare"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

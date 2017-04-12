@@ -3,6 +3,7 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -18,10 +19,12 @@ import android.widget.TextView;
 import com.android.qzy.library.byeburgerview.ByeBurgerBottomBehavior;
 import com.android.qzy.library.byeburgerview.ByeBurgerTitleBehavior;
 import com.example.administrator.rxjavaandretrofitsimple.R;
+import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.NetConnectionUtils;
 import com.example.administrator.rxjavaandretrofitsimple.widget.ScrollWebView;
+import com.example.administrator.rxjavaandretrofitsimple.widget.ShareDialog;
 
 import java.io.File;
 
@@ -33,23 +36,26 @@ import java.io.File;
  * 类描述：WebView通用类(使用了WebView的离线缓存功能)
  */
 
-public class WebClientActivity extends BaseNoNetworkActivity implements ScrollWebView.OnScrollListener{
+public class WebClientActivity extends BaseNoNetworkActivity implements ScrollWebView.OnScrollListener,View.OnClickListener{
 
+    private CoordinatorLayout rootLayout;
     private ScrollWebView webView;
     private ProgressBar loadingBar;
     private RelativeLayout rlTitle;
     private LinearLayout llBottomBar;
     private ImageView ivBack;
     private TextView tvTitle;
-    private String url;
-    private String title;
+    //private String url;
+    //private String title;
     private static final String APP_CACHE_DIRNAME = "/webcache"; // web缓存目录
     private String cacheDirPath;
+    private ImageView ivShare;
+    private ShareDialog shareDialog;
+    private NewsResponse.ResultBean.DataBean response;
 
-    public static void startFrom(Activity source, String title, String url) {
+    public static void startFrom(Activity source, NewsResponse.ResultBean.DataBean response) {
         Intent intent = new Intent(source, WebClientActivity.class);
-        intent.putExtra(LocalConstant.WEB_URL, url);
-        intent.putExtra(LocalConstant.WEBVIEW_TITLE, title);
+        intent.putExtra(LocalConstant.NEWSENTITY, response);
         source.startActivity(intent);
     }
     @Override
@@ -60,16 +66,18 @@ public class WebClientActivity extends BaseNoNetworkActivity implements ScrollWe
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
         cacheDirPath = getFilesDir().getAbsolutePath() + APP_CACHE_DIRNAME;
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+        ivShare = (ImageView) findViewById(R.id.ivShare);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         ivBack = (ImageView) findViewById(R.id.ivBack);
         rlTitle = (RelativeLayout) findViewById(R.id.rlTitle);
         llBottomBar = (LinearLayout) findViewById(R.id.llBottomBar);
         webView = ((ScrollWebView) findViewById(R.id.client));
         loadingBar = ((ProgressBar) findViewById(R.id.loadingBar));
-        url = getIntent().getStringExtra(LocalConstant.WEB_URL);
-        title = getIntent().getStringExtra(LocalConstant.WEBVIEW_TITLE);
-        tvTitle.setText(title);
+        response = (NewsResponse.ResultBean.DataBean) getIntent().getExtras().get(LocalConstant.NEWSENTITY);
+        tvTitle.setText(response.title);
         initWebView();
+        ivShare.setOnClickListener(this);
     }
 
     public void initWebView(){
@@ -110,7 +118,19 @@ public class WebClientActivity extends BaseNoNetworkActivity implements ScrollWe
             }
         });
         webView.setListener(this);
-        webView.loadUrl(url);
+        webView.loadUrl(response.url);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ivShare:
+                if(null == shareDialog){
+                    shareDialog = new ShareDialog(getActivity(),(View)rootLayout.getParent(),response);
+                }
+                shareDialog.show();
+                break;
+        }
     }
 
     public void back(View view){
@@ -165,22 +185,6 @@ public class WebClientActivity extends BaseNoNetworkActivity implements ScrollWe
         return super.onKeyDown(keyCode, event);
     }
 
-
-    public void clearWebViewCache() {
-        // 清理WebView缓存数据库
-        try {
-            deleteDatabase("webview.db");
-            deleteDatabase("webviewCache.db");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // WebView缓存文件
-        File appCacheDir = new File(cacheDirPath);
-        // 删除webView缓存，缓存目录
-        if (appCacheDir.exists()) {
-            deleteFile(appCacheDir);
-        }
-    }
 
     public void deleteFile(File file) {
         if (file.exists()) {
