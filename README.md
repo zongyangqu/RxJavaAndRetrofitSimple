@@ -10,6 +10,7 @@
 下面分几个模块来介绍下这个项目：
 
 ##网络请求
+
 网络请求部分使用Retrofit实现，不了解Retrofit可以参照下[RetrofitDemoMaster](https://github.com/43081438/RetrofitDemoMaster).
 关于Retrofit有有几点单独拿出来说下。
 
@@ -100,6 +101,7 @@ HttpLoggingInterceptor提供了4中控制打印信息类型的等级，分别是
 
 
 ##架构模式（MVP）
+
 关于MVP的感念不想说太多了，相信大家都明白，要我说就是解耦、易扩展，各司其职自己专注做自己的事符合软件设计的开闭原则。
 
 
