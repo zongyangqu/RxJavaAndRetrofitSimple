@@ -88,6 +88,7 @@ public class NewsFragment extends BaseMvpLazyFragment<NewsView,NewsPresenter> im
         fragmentAdapter = new FragmentAdapter(getActivity(), getFragmentManager());
         viewPager_news_tab.setAdapter(fragmentAdapter);
         viewPager_news_tab.setOffscreenPageLimit(tabs.length);
+        //viewPager_news_tab.setPageTransformer(true,new ZoomOutTranformer());
         mAbSlidingTabView.setViewPager(viewPager_news_tab);
         mAbSlidingTabView.setCurrentTab(0);
     }

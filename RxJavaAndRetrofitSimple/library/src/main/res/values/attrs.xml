@@ -220,4 +220,10 @@
         <attr name="mv_isWidthHeightEqual" format="boolean"/>
     </declare-styleable>
     <!-- FlycotableLayout    end -->
+
+    <!-- ConvenientBanner   轮播图 -->
+    <declare-styleable name="ConvenientBanner">
+        <attr name="canLoop" format="boolean" />
+    </declare-styleable>
+
 </resources>

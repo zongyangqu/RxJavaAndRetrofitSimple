@@ -1,16 +1,5 @@
 package com.example.administrator.rxjavaandretrofitsimple.mvp.model.base;
 
-import com.example.administrator.rxjavaandretrofitsimple.api.ApiService;
-import com.example.administrator.rxjavaandretrofitsimple.util.ClientService;
-import com.example.administrator.rxjavaandretrofitsimple.util.ConfigUtil;
-import com.example.administrator.rxjavaandretrofitsimple.util.conventer.FastJsonConverterFactory;
-
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-
 /**
  * 类名称：
  * 类描述：模拟登陆Model基类

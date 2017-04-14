@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.example.administrator.rxjavaandretrofitsimple"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -44,21 +44,25 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //greendao依赖
     compile 'org.greenrobot:greendao:3.2.0'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    //compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:24.2.0'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
     compile 'io.reactivex:rxjava:1.1.3'
     compile 'com.alibaba:fastjson:1.1.52.android'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
+    //compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.bigkoo:svprogresshud:1.0.6'
     //compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar'
     //菜单栏
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    compile 'com.android.support:cardview-v7:23.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
+    //compile 'com.bigkoo:convenientbanner:2.0.5'//轮播图
+//    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'//Viewpager动画库
 
     //compile 'com.github.githubwing:ByeBurger:1.2.3'
     compile project(':library')

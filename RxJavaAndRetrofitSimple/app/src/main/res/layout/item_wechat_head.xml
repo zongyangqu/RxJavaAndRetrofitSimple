@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/ivWechatHead"
+    <com.android.qzy.library.convenientbanner.ConvenientBanner
+        android:id="@+id/convenientBanner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/default_head_icon"
-        />
-
+        android:layout_height="wrap_content"
+        app:canLoop="true"/>
 </LinearLayout>

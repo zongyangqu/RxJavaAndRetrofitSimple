@@ -83,6 +83,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.WebClientActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.MultipleActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

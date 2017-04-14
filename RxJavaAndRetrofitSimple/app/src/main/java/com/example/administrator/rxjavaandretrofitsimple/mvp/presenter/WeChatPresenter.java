@@ -60,7 +60,7 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
                 getView().startLoadingView();
             }
         }).subscribe(subscriber);
-        addSubscrib(subscriber);
+        addSubscrib(subscriber);//用于取消订阅时使用
     }
 }
 

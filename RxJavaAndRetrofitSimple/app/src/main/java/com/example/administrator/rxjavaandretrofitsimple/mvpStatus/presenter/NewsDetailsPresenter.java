@@ -8,15 +8,15 @@ import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsDeta
 
 /**
  * 作者：quzongyang
- * <p>
+ *
  * 创建时间：2017/3/29
- * <p>
+ *
  * 类描述：
  */
 
 public class NewsDetailsPresenter extends BaseStatusPresenter<NewsDetailsView> {
     /**
-     * 获取笑话信息
+     * 获取新闻信息
      * @param requestType   请求分类
      * @param cacheControl
      */

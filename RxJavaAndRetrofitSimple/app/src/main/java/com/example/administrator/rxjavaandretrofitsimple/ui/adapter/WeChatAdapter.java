@@ -128,7 +128,7 @@ public class WeChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             initView(headView);
         }
         public void initView(View itemView){
-            ivWechatHead = (ImageView) itemView.findViewById(R.id.ivWechatHead);
+           // ivWechatHead = (ImageView) itemView.findViewById(R.id.ivWechatHead);
         }
     }
 

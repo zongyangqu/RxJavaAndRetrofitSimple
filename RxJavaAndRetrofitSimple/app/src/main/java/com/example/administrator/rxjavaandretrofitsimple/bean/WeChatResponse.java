@@ -1,5 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.bean;
 
+import android.support.v7.util.SortedList;
+
 import com.example.administrator.rxjavaandretrofitsimple.bean.base.BaseResponse;
 
 import java.util.List;

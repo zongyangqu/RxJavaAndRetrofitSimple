@@ -36,6 +36,8 @@ public class OthersFragment extends BaseModelFragment {
     TextView tvHistoryToday;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
+    @Bind(R.id.tvMultiple)
+    TextView tvMultiple;
     private Observable<User> observableUserLogin;//监听登录界面发送的用户信息对象
     @Override
     protected int getLayoutId() {
@@ -78,7 +80,7 @@ public class OthersFragment extends BaseModelFragment {
 
     }
 
-    @OnClick({R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin})
+    @OnClick({R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin,R.id.tvMultiple})
     public void onViewClick(View view){
         switch (view.getId()){
             case R.id.tvJoke:
@@ -88,6 +90,9 @@ public class OthersFragment extends BaseModelFragment {
                 HistoryTodayActivity.startAction(getActivity());
                 break;
             case R.id.tvLogin:
+                LoginActivity.startAction(getActivity());
+                break;
+            case R.id.tvMultiple:
                 LoginActivity.startAction(getActivity());
                 break;
         }

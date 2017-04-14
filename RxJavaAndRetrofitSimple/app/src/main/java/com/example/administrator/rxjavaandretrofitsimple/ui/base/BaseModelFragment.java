@@ -11,8 +11,6 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnRetry
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnShowHideViewListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.StatusLayoutManager;
 import butterknife.ButterKnife;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * 作者：quzongyang
@@ -70,24 +68,15 @@ public abstract class BaseModelFragment extends LazyFragment {
 
     protected abstract BasePresenter getCurrentPersenter(); //获取当前的业务处理类
 
-    private CompositeSubscription compositeSubscription;
 
-    /**
-     * @param subscription will be unsubscribed until fragment ui destroyed.
-     */
-    protected void addViewSubscription(Subscription subscription) {
-        if (compositeSubscription == null) {
-            compositeSubscription = new CompositeSubscription();
-        }
-        compositeSubscription.add(subscription);
-    }
 
     @Override
     public void onDestroyViewLay() {
         super.onDestroyViewLay();
         ButterKnife.unbind(this);
-        if (compositeSubscription != null && compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
+        if (getCurrentPersenter() != null) {
+            getCurrentPersenter().unsubcrib();
+
         }
     }
 }

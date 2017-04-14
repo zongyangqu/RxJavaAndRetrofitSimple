@@ -38,6 +38,12 @@ public class RequestClient {
                 .compose(RxTransformer.<NewsResponse>ioToUI());
     }
 
+    /**
+     * 获取新闻分类信息
+     * @param requestType
+     * @param cacheControl
+     * @return
+     */
     public static Observable<NewsResponse> getNewsClassify(String requestType, String cacheControl) {
         return ApiManager.getDefault(HostType.JUHE_DATE_NET_INTERFACE).getNewsClassify(requestType,cacheControl)
                 .compose(RxTransformer.<NewsResponse>ioToUI());
