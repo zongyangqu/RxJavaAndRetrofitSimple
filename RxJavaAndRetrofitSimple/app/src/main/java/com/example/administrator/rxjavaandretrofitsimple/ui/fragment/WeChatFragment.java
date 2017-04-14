@@ -29,8 +29,6 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragme
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.xmlparse.ScreenUtils;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.Bind;

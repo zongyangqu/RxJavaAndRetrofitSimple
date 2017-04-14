@@ -101,7 +101,7 @@
     <color name="black">#000000</color>
     <color name="shallow_black">#4c4c4c</color>
     <color name="transparent">#00000000</color>
-    <color name="click_gray">#EEEEEE</color>
+    <color name="divide_gray">#EEEEEE</color>
     <color name="dark_green">#50944B</color>
     <color name="orange">#FFAC1E</color>
     <color name="deep_orange">#ff6600</color>

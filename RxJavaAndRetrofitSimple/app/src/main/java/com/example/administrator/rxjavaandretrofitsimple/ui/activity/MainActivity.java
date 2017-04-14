@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import com.android.qzy.library.flycotablelayout.CommonTabLayout;
 import com.android.qzy.library.flycotablelayout.listener.CustomTabEntity;
 import com.android.qzy.library.flycotablelayout.listener.OnTabSelectListener;
+import com.android.qzy.library.viewpagertransform.DrawerTransformer;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.application.BaseApplication;
 import com.example.administrator.rxjavaandretrofitsimple.bean.SplashAdvEntity;
@@ -123,6 +124,7 @@ public class MainActivity extends BaseNoNetworkActivity {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
+        mViewPager.setPageTransformer(true,new DrawerTransformer());//加入ViewPager转场动画
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         tabLayout.setTabData(mTabEntities);

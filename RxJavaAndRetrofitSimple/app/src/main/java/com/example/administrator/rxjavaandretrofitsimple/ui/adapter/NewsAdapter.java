@@ -50,6 +50,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         NewsHolder newsHolder = ((NewsHolder) holder);
         newsHolder.tv_news_date.setText(news.date);
         newsHolder.tv_news_title.setText(news.title);
+        newsHolder.tvAuthorName.setText(news.author_name);
         Glide.with(BaseApplication.getInstance()).load(news.thumbnail_pic_s).error(R.mipmap.ic_launcher).into(newsHolder.iv_news_img);
         newsHolder.rlNewsLayout.setOnClickListener(new View.OnClickListener() {
             @Override

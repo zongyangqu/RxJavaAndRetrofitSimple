@@ -287,6 +287,23 @@ RxJava提供给我们的方式就是将网络请求返回值Observable通过订�
 
 
 
+**感谢以下大神的开源项目分享让我可以站在巨人的肩膀上**
+
+[1.Android AutoLayout全新的适配方式 堪称适配终结者](http://blog.csdn.net/lmj623565791/article/details/49990941)
+
+[2.Android-ConvenientBanner](https://github.com/saiwu-bigkoo/Android-ConvenientBanner)
+
+[3.FlycoTabLayout](https://github.com/H07000223/FlycoTabLayout)
+
+[4.StatusBarUtil沉浸式状态栏](https://github.com/laobie/StatusBarUtil)
+
+[5.viewpagertransform转场动画库ViewPager](https://github.com/ToxicBakery/ViewPagerTransforms)
+
+
+
+
+
+
 
 
 

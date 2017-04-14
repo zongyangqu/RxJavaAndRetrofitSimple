@@ -3,15 +3,16 @@
     android:id="@+id/rlNewsLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5px"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="10px">
+    android:layout_marginTop="20px"
+    android:paddingLeft="20px"
+    android:paddingRight="20px">
 
     <ImageView
         android:id="@+id/iv_news_img"
-        android:layout_width="280px"
-        android:layout_height="210px"
+        android:layout_width="230px"
+        android:layout_height="173px"
         android:src="@mipmap/ic_launcher" />
 
     <com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout
@@ -19,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/iv_news_img"
         android:layout_alignTop="@id/iv_news_img"
-        android:layout_marginLeft="10px"
+        android:padding="10px"
         android:layout_toRightOf="@id/iv_news_img">
 
         <TextView
@@ -28,9 +29,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-            android:textColor="@color/text_dark_gary"
-            android:textSize="35px" />
+            android:textColor="@color/color333333"
+            android:textSize="30px" />
 
         <TextView
             android:id="@+id/tv_news_date"
@@ -41,8 +41,25 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="2012-12-15"
-            android:textSize="25px" />
+            android:textColor="@color/color999999"
+            android:textSize="22px" />
+        <TextView
+            android:id="@+id/tvAuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10px"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/color666666"
+            android:textSize="22px" />
     </com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/iv_news_img"
+        android:background="@color/divide_gray"/>
 
 
 </com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout>
