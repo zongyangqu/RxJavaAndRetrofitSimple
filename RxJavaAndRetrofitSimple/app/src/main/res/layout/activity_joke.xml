@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        android:background="@color/main_blue"
         app:layout_behavior="@string/bye_burger_title_behavior">
 
         <ImageView
@@ -30,15 +30,15 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="笑话"
-            android:textColor="@color/color333333"
-            android:textSize="15sp" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/soil_yellow"
+        android:background="@color/main_blue"
         android:gravity="center_vertical"
         android:padding="10dp"
         app:layout_behavior="@string/bye_burger_bottom_behavior">

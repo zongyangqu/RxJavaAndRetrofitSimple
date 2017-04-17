@@ -15,11 +15,9 @@ import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.LoginPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.LoginView;
 import com.example.administrator.rxjavaandretrofitsimple.rxbus.RxBus;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpStatusActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -32,7 +30,7 @@ import greendao.db.User;
  * 创建时间：2016/10/11. 19:39
  * 版本：
  */
-public class LoginActivity extends BaseStatusMvpStatusActivity<LoginView, LoginPresenter> implements LoginView{
+public class LoginActivity extends BaseStatusMvpActivity<LoginView, LoginPresenter> implements LoginView{
 
     @Bind(R.id.tvLoginRegister)
     TextView tvLoginRegister;

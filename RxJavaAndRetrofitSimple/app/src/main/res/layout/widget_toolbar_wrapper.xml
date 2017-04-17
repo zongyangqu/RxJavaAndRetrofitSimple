@@ -5,6 +5,7 @@
     android:id="@+id/realToolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:background="@color/main_blue"
     android:orientation="vertical"
     app:navigationIcon="@mipmap/back">
 
@@ -14,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="@dimen/margin_left_toolbar_left_text_button"
+        android:textColor="@color/white"
         android:textSize="@dimen/size_toolbar_left_text_button"
         android:visibility="gone"
         tools:text="按钮" />
@@ -26,6 +28,7 @@
         android:maxWidth="@dimen/max_width_toolbar_title"
         android:singleLine="true"
         android:textSize="@dimen/size_toolbar_title"
+        android:textColor="@color/white"
         tools:text="标题" />
 
     <FrameLayout
@@ -38,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
+            android:textColor="@color/white"
             android:layout_marginRight="@dimen/margin_right_toolbar_right_text_button"
             android:gravity="center"
             android:textSize="@dimen/size_toolbar_right_text_button"

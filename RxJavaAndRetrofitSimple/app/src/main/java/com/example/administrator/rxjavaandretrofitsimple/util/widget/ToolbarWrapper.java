@@ -43,7 +43,7 @@ public class ToolbarWrapper extends Toolbar {
     private static final int DEFAULT_COLOR = Color.parseColor("#ca2729");//App theme color
     private static final int DEFAULT_LEFT_TEXT_BUTTON_COLOR = DEFAULT_COLOR;
     private static final int DEFAULT_RIGHT_TEXT_BUTTON_COLOR = DEFAULT_COLOR;
-    private static final int DEFAULT_TITLE_COLOR = Color.BLACK;
+    private static final int DEFAULT_TITLE_COLOR = Color.WHITE;
     private static final int DEFAULT_BKG_COLOR = Color.WHITE;
 
     public ToolbarWrapper(Context context) {

@@ -1,44 +1,51 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.base;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.android.qzy.library.statusbar.StatusBarUtil;
 import com.example.administrator.rxjavaandretrofitsimple.R;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.base.BaseStatusPresenter;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseStatusView;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.framework.MvpActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnRetryListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnShowHideViewListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.StatusLayoutManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
+import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
+import com.example.administrator.rxjavaandretrofitsimple.util.statusBar.StatusBarJobber;
 import com.example.administrator.rxjavaandretrofitsimple.util.widget.ToolbarWrapper;
-import butterknife.ButterKnife;
 
+import butterknife.ButterKnife;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * 作者：quzongyang
  *
- * 创建时间：2017/1/18
+ * 创建时间：2017/3/20
  *
- * 类描述：无网络请求的Activity基类
+ * 类描述：Activity基类(使用此基类的子Activity没有写Model层)
  */
 
-public abstract class BaseNoNetworkActivity extends AppCompatActivity {
+public abstract class BaseStatusMvpActivity<V extends BaseStatusView, P extends BaseStatusPresenter<V>> extends MvpActivity<V, P> implements BaseStatusView {
 
     protected ToolbarWrapper toolbar;
+    private CompositeSubscription compositeSubscription;
     protected StatusLayoutManager statusLayoutManager;
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppManager.getInstance().addActivity(this);
-        setContentView(R.layout.activity_base);
+        beforeSetContentView();
         setStatusBar();
+        setContentView(R.layout.activity_base);
         initStatusLayout();
         if (butterKnifeEnabled()) {
             ButterKnife.bind(this);
@@ -48,16 +55,15 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity {
             configToolbar();
         }
         initTitleBar();
-        onViewCreated(savedInstanceState);
+        if (lightStatusBarMode()) {
+            if (StatusBarJobber.switchStatusBarElementTo(this, true)) {
+                StatusBarJobber.setTranslucentStatusColor(this, R.color.white);
+            }
+        }
+        onViewCreated();
     }
 
-    protected void setStatusBar() {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.main_blue),0);
-    }
 
-    /**
-     * 初始化状态切换布局
-     */
     protected void initStatusLayout(){
         LinearLayout mainLinearLayout = (LinearLayout) findViewById(R.id.main_rl);
         statusLayoutManager = StatusLayoutManager.newBuilder(this)
@@ -85,9 +91,25 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity {
         statusLayoutManager.showContent();
     }
 
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.main_blue),0);
+    }
 
+    protected boolean butterKnifeEnabled() {
+        return true;
+    }
 
+    protected void beforeSetContentView() {
+        AppManager.getInstance().addActivity(this);
+    }
 
+    protected boolean lightStatusBarMode() {
+        return true;
+    }
+
+    /**
+     * Config the toolbar, invoked before {@link #onViewCreated()}
+     */
     protected void configToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -98,48 +120,32 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity {
         });
     }
 
-    @LayoutRes
-    protected abstract int getLayoutId();
-
-    protected abstract void onViewCreated(Bundle savedInstanceState);
-
     protected void onBack() {
         finish();
     }
+
+    protected abstract void onViewCreated();
+
+    @LayoutRes
+    protected abstract int getLayoutId();
+
+
+    /**
+     * 设置标题栏
+     */
+    protected abstract void initTitleBar();
 
     /**
      * 加载错误重试
      */
     protected abstract void onRetryClick();
 
-    protected boolean butterKnifeEnabled() {
-        return true;
+    protected void addViewSubscription(Subscription subscription) {
+        if (compositeSubscription == null) {
+            compositeSubscription = new CompositeSubscription();
+        }
+        compositeSubscription.add(subscription);
     }
-
-    protected boolean lightStatusBarMode() {
-        return true;
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    /**
-     * 初始化标题
-     **/
-    protected abstract void initTitleBar();
-
-    protected abstract Activity getActivity();
-
-    @Override
-    protected void onDestroy() {
-        AppManager.getInstance().killActivity(this);
-        ButterKnife.unbind(this);
-        super.onDestroy();
-    }
-
 
     /**
      * 设置中间标题文字颜色
@@ -219,5 +225,59 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity {
     public void setEmptyText(String message) {
         statusLayoutManager.setEmptyText(message);
     }
-}
 
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+
+
+
+    @Override
+    public void processingDialog() {
+        ProgressDialogUtils.show(visitActivity());
+    }
+
+    @Override
+    public void processingDialog(@StringRes int i) {
+        ProgressDialogUtils.show(visitActivity(), i);
+    }
+
+    @Override
+    public void dismissProcessingDialog() {
+        ProgressDialogUtils.dismiss();
+    }
+
+
+    protected boolean enableDispatchTouchEventToDismissSoftKeyBoard() {
+        return true;
+    }
+
+    protected void onKeyBoardHideEvent() {
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (butterKnifeEnabled()) {
+            ButterKnife.unbind(this);
+        }
+        if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+        AppManager.getInstance().killActivity(this);
+    }
+}

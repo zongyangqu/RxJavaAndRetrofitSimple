@@ -32,6 +32,7 @@ public class WeChatPresenter extends BasePresenter<WeChatView, WeChatModel> {
         Subscriber<WeChatResponse> subscriber = new Subscriber<WeChatResponse>() {
             @Override
             public void onCompleted() {
+                getView().hideLoadingView();
             }
 
             @Override

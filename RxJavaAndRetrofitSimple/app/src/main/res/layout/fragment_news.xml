@@ -12,12 +12,12 @@
         android:background="@color/white"
         android:fillViewport="false"
         tl:tl_tab_space_equal="false"
-        tl:tl_indicator_color="@color/orange_red"
+        tl:tl_indicator_color="@color/main_blue"
         tl:tl_indicator_height="2dp"
         tl:tl_indicator_width_equal_title="false"
         tl:tl_textBold = "SELECT"
         tl:tl_textAllCaps="true"
-        tl:tl_textSelectColor="@color/orange_red"
+        tl:tl_textSelectColor="@color/main_blue"
         tl:tl_textUnselectColor="@color/text_dark_gary"
         tl:tl_textsize="15sp" />
 

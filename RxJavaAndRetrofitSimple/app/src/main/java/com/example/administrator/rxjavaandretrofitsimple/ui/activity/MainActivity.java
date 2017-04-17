@@ -47,7 +47,7 @@ public class MainActivity extends BaseNoNetworkActivity {
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private String[] mTitles = {"新闻", "微信","视频","综合"};
+    private String[] mTitles = {"新闻", "美图","视频","综合"};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,R.mipmap.ic_girl_normal,R.mipmap.ic_video_normal,R.mipmap.ic_care_normal};
     private int[] mIconSelectIds = {

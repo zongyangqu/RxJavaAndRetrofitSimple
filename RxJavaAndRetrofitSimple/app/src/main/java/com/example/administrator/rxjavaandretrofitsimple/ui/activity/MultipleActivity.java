@@ -3,7 +3,7 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.MultiplePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.MultipleView;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpStatusActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpActivity;
 
 /**
  * 作者：quzongyang
@@ -13,7 +13,7 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpSt
  * 类描述：
  */
 
-public class MultipleActivity extends BaseStatusMvpStatusActivity<MultipleView, MultiplePresenter> implements MultipleView {
+public class MultipleActivity extends BaseStatusMvpActivity<MultipleView, MultiplePresenter> implements MultipleView {
 
     @Override
     protected MultiplePresenter createPresenter() {

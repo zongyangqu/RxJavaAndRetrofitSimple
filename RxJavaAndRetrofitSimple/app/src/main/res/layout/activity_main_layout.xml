@@ -8,19 +8,26 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="5dp"
         android:layout_alignParentBottom="true"
         tl:tl_indicator_height="0dp"
         tl:tl_iconHeight="20dp"
         tl:tl_iconWidth="20dp"
-        tl:tl_indicator_color="@color/gray"
-        tl:tl_textSelectColor="@color/soil_yellow"
-        tl:tl_textUnselectColor="@color/light_gray"
+        tl:tl_indicator_color="@color/white"
+        tl:tl_textSelectColor="@color/main_blue"
+        tl:tl_textUnselectColor="@color/color333333"
         tl:tl_textsize="11sp"
         tl:tl_underline_height="0dp" />
+    <View
+        android:id="@+id/viewDivide"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/tab_layout"
+        android:background="@color/divide_gray"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
-        android:layout_above="@id/tab_layout"
+        android:layout_above="@id/viewDivide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <!--<FrameLayout
