@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivWechatImgSingle"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/ivWechatTitleSingle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivWechatImgSingle"
+        android:textColor="@color/text_dark_gary"
+        android:layout_centerVertical="true"
+        android:maxLines="2"
+        android:text="sdsd"
+        android:ellipsize="end"/>
+
+</com.example.administrator.rxjavaandretrofitsimple.util.autolayout.AutoRelativeLayout>

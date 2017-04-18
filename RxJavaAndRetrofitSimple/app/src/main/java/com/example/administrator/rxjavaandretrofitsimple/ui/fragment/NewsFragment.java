@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.android.qzy.library.flycotablelayout.SlidingTabLayout;
+import com.android.qzy.library.viewpagertransform.DrawerTransformer;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.NewsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsView;
@@ -86,9 +87,9 @@ public class NewsFragment extends BaseMvpLazyFragment<NewsView,NewsPresenter> im
             }
         }
         fragmentAdapter = new FragmentAdapter(getActivity(), getFragmentManager());
-        viewPager_news_tab.setAdapter(fragmentAdapter);
+        viewPager_news_tab.setPageTransformer(true,new DrawerTransformer());//加入ViewPager转场动画
         viewPager_news_tab.setOffscreenPageLimit(tabs.length);
-        //viewPager_news_tab.setPageTransformer(true,new ZoomOutTranformer());
+        viewPager_news_tab.setAdapter(fragmentAdapter);
         mAbSlidingTabView.setViewPager(viewPager_news_tab);
         mAbSlidingTabView.setCurrentTab(0);
     }

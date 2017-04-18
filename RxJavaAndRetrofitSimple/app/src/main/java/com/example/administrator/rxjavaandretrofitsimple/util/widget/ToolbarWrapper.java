@@ -115,6 +115,10 @@ public class ToolbarWrapper extends Toolbar {
         realToolbar.setNavigationIcon(resId);
     }
 
+    public void setTitleBarBackGroundColor(String color){
+        this.realToolbar.setBackgroundColor(Color.parseColor(color));
+    }
+
     @Override
     public void setNavigationIcon(@Nullable Drawable icon) {
         realToolbar.setNavigationIcon(icon);

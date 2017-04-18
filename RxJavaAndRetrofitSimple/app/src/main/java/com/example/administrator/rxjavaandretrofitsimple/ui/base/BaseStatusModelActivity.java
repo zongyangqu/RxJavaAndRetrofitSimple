@@ -7,6 +7,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -196,7 +197,16 @@ public abstract class BaseStatusModelActivity extends AppCompatActivity {
      * 获取右侧标题
      */
     protected TextView getRightTitleButton(){
+
         return toolbar.getRightTextButton();
+    }
+
+    /**
+     * 获取右侧标题图片
+     */
+    protected ImageView getRightTitleIMG(){
+        toolbar.getRightImageButton().setVisibility(View.VISIBLE);
+        return toolbar.getRightImageButton();
     }
 
 

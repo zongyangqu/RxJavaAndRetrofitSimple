@@ -18,6 +18,8 @@ public class LocalConstant {
     public static final String WECHAT_REQURST_KAY =  "5c6868ae0010858fab351ac83921d9b3";
     //分数默认显示数量
     public static final int DEFAULT_PAGE =  10;
+    //分数默认显示数量
+    public static final int DEFAULT_MAXPAGE =  20;
 
     public static final String REQUESTTOPNEWS =  "top";
     public static final String REQUESTSOCIETYNEWS =  "shehui";
@@ -33,6 +35,8 @@ public class LocalConstant {
     public static final String NEWSENTITY = "NEWSENTITY";
     public static final String COVER_SITE_TITLE = "COVER_SITE_TITLE";
     public static final String WEBVIEW_TITLE = "WEBVIEW_TITLE";
+
+    public static final String PHOTO_DETAIL = "photo_detail";
 
     /**
      * 登录成功标识

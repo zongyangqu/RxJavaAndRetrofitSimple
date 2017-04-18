@@ -21,8 +21,8 @@ import com.example.administrator.rxjavaandretrofitsimple.bean.TabEntity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseNoNetworkActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.NewsFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.OthersFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.PhotoFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragment;
-import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.WeChatFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.DownLoaderAsyncTask;
@@ -53,7 +53,7 @@ public class MainActivity extends BaseNoNetworkActivity {
     private int[] mIconSelectIds = {
             R.mipmap.ic_home_selected,R.mipmap.ic_girl_selected, R.mipmap.ic_video_selected,R.mipmap.ic_care_selected};
     private NewsFragment newsFragment;
-    private WeChatFragment weChatFragment;
+    private PhotoFragment photoFragment;
     private VideoFragment videoFragment;
     private OthersFragment othersFragment;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
@@ -102,16 +102,16 @@ public class MainActivity extends BaseNoNetworkActivity {
     private void initFragment(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             newsFragment = (NewsFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
-            weChatFragment = (WeChatFragment) getSupportFragmentManager().findFragmentByTag("weChatFragment");
+            photoFragment = (PhotoFragment) getSupportFragmentManager().findFragmentByTag("photoFragment");
             videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
             othersFragment = (OthersFragment) getSupportFragmentManager().findFragmentByTag("othersFragment");
         } else {
             newsFragment = new NewsFragment();
-            weChatFragment = new WeChatFragment();
+            photoFragment = new PhotoFragment();
             videoFragment = new VideoFragment();
             othersFragment = new OthersFragment();
             mFragments.add(newsFragment);
-            mFragments.add(weChatFragment);
+            mFragments.add(photoFragment);
             mFragments.add(videoFragment);
             mFragments.add(othersFragment);
         }

@@ -2,6 +2,7 @@ package com.example.administrator.rxjavaandretrofitsimple.api;
 
 import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
+import com.example.administrator.rxjavaandretrofitsimple.bean.PhotoViewResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -53,6 +55,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/joke/content/text.from")
     Observable<JokeResponse> getJokeInfo(@FieldMap Map<String, String> params);
+
+    @GET("data/福利/{size}/{page}")
+    Observable<PhotoViewResponse> getPhotoList(
+            @Header("Cache-Control") String cacheControl, @Path("size") int size, @Path("page") int page);
 
 
 

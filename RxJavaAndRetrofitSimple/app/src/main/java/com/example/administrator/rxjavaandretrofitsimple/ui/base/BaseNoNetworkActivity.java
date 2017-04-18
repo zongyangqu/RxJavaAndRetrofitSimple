@@ -1,6 +1,7 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.base;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -167,8 +168,9 @@ public abstract class BaseNoNetworkActivity extends AppCompatActivity {
     /**
      * 设置标题栏颜色
      */
-    protected void setTitleBackgroundColor(int color) {
-        toolbar.setBackgroundColor(color);
+    protected void setTitleBackgroundColor(String color) {
+        toolbar.setTitleBarBackGroundColor(color);
+
     }
 
     /**

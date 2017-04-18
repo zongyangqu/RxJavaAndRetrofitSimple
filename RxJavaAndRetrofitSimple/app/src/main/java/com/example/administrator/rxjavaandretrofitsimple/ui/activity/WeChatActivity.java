@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -58,6 +59,15 @@ public class WeChatActivity extends BaseStatusModelActivity implements WeChatVie
     private View headerView;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
     private ConvenientBanner convenientBanner;
+    private GridLayoutManager manager;
+    // 当前的条目是recyclerView的头布局
+    public static final int HEADER_VIEW_ITEM = 0;
+    // 当前的条目是普通recyclerView的条目
+    //public static final int NORMAL_RECYCLER_VIEW_ITEM = 1;
+    // 一行显示一个
+    public static final int RECYCLERVIEW_ITEM_SINGLE = 1;
+    // 一行显示两个
+    public static final int RECYCLERVIEW_ITEM_DOUBLE = 2;
 
 
     /**
@@ -90,12 +100,27 @@ public class WeChatActivity extends BaseStatusModelActivity implements WeChatVie
     }
 
     public void initView() {
-        rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
+        manager = new GridLayoutManager(this, 2);
+        // 设置布局管理一条数据占用几行，如果是头布局则头布局自己占用一行
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int postion) {
+                if (postion == 0) {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        rcv_weChat.setLayoutManager(manager);
+       // rcv_weChat.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WeChatAdapter(getActivity());
-        rcv_weChat.setAdapter(adapter);
         headerView = View.inflate(getActivity(), R.layout.item_wechat_head, null);
+        // 设置当前ViewType
+        adapter.setSpanSize(WeChatActivity.RECYCLERVIEW_ITEM_DOUBLE);
+        adapter.addHeadView(headerView);
+        rcv_weChat.setAdapter(adapter);
         convenientBanner = (ConvenientBanner) headerView.findViewById(R.id.convenientBanner);
-        adapter.addHeaderView(headerView);
         _presenter = new WeChatPresenter();
         _presenter.attachView(this);
         _presenter.attachModel(new WeChatModel());
@@ -191,6 +216,13 @@ public class WeChatActivity extends BaseStatusModelActivity implements WeChatVie
 
     @Override
     protected void initTitleBar() {
+        getRightTitleIMG().setImageResource(R.mipmap.back);
+        getRightTitleIMG().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeRecycleViewList();
+            }
+        });
         setTitleCenter("微信精选");
     }
 
@@ -208,6 +240,46 @@ public class WeChatActivity extends BaseStatusModelActivity implements WeChatVie
             adapter.addData(response.result.list);
         } else {//刷新
             adapter.setData(response.result.list);
+        }
+    }
+
+    /**
+     * 改变RecycleView的显示列数
+     */
+    private void changeRecycleViewList() {
+        if (adapter != null) {
+            int spanSize = adapter.getSpanSize();
+            // 当前一行显示一列
+            if (spanSize == WeChatActivity.RECYCLERVIEW_ITEM_SINGLE) {
+                manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        if (adapter.getItemViewType(position) == WeChatActivity.HEADER_VIEW_ITEM) {
+                            return 2;
+                        } else {
+                            return 1;
+
+                        }
+                    }
+                });
+                adapter.setSpanSize(WeChatActivity.RECYCLERVIEW_ITEM_DOUBLE);
+            }
+            // 当前一行显示两列
+            else if (spanSize == WeChatActivity.RECYCLERVIEW_ITEM_DOUBLE) {
+                manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        if (adapter.getItemViewType(position) == WeChatActivity.HEADER_VIEW_ITEM) {
+                            return 2;
+                        } else {
+                            return 2;
+                        }
+                    }
+                });
+                adapter.setSpanSize(WeChatActivity.RECYCLERVIEW_ITEM_SINGLE);
+            }
+            // 第一个参数是动画开始的位置索引
+            adapter.notifyItemRangeChanged(2, adapter.getItemCount());
         }
     }
 
