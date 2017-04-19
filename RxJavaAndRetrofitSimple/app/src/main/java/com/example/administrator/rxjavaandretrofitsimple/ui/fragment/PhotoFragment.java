@@ -1,33 +1,23 @@
 package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.android.qzy.library.refreshview.SpringView;
 import com.android.qzy.library.refreshview.container.MeituanFooter;
 import com.android.qzy.library.refreshview.container.MeituanHeader;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
 import com.example.administrator.rxjavaandretrofitsimple.bean.PhotoViewResponse;
-import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.model.PhotoViewModel;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.model.WeChatModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.PhotoViewPresenter;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.WeChatPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.PhotoView;
-import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.PhotosDetailActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.PhotoViewAdapter;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp.BaseModelFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.utils.SpacesItemDecoration;
-import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
 
@@ -47,7 +37,6 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
     RecyclerView rcvPhoto;
     @Bind(R.id.springview)
     SpringView springview;
-    private int total_page;
     private int currentPage = 1;
     PhotoViewAdapter adapter;
     private PhotoViewPresenter _presenter;
@@ -98,7 +87,6 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
      * @param currentPage 当前页数
      * @param isLoadMore  是否是上拉加载更多
      */
-
     public void refreshPhotoView(int currentPage, boolean isLoadMore) {
         _presenter.getPhoto(ApiManager.getCacheControl(), LocalConstant.DEFAULT_MAXPAGE, currentPage, isLoadMore);
     }

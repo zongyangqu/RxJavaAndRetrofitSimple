@@ -1,4 +1,4 @@
-package com.example.administrator.rxjavaandretrofitsimple.ui.base;
+package com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp;
 
 
 import android.os.Bundle;

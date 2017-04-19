@@ -1,48 +1,61 @@
-package com.example.administrator.rxjavaandretrofitsimple.ui.base;
+package com.example.administrator.rxjavaandretrofitsimple.ui.base.basestandardmvp;
 
 import android.os.Bundle;
-import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import com.example.administrator.rxjavaandretrofitsimple.R;
-import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.base.BaseStatusPresenter;
-import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.BaseStatusView;
-import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.base.StatusView;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.framework.MvpLazyFragment;
+import com.example.administrator.rxjavaandretrofitsimple.mvp.model.base.BaseModel;
+import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.model.base.BaseStandardModel;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.presenter.base.BaseStandardPresenter;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.utils.RxManager;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.utils.TUtil;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.framework.LazyFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnRetryListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.OnShowHideViewListener;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.manager.StatusLayoutManager;
-import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
+
 import butterknife.ButterKnife;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * 作者：quzongyang
  *
- * 创建时间：2017/3/22
+ * 创建时间：2017/4/19
  *
- * 类描述：懒加载Fragment基类(使用此基类的子Fragment没有写Model层)
+ * 类描述：标准化MVP架构Fragment基类
  */
 
-public abstract class BaseMvpLazyFragment<V extends BaseStatusView, P extends BaseStatusPresenter<V>> extends MvpLazyFragment<V, P> implements StatusView {
+public abstract class BaseStandardMVPFragment <T extends BaseStandardPresenter, E extends BaseStandardModel> extends LazyFragment {
 
     protected StatusLayoutManager statusLayoutManager;
     private View view;
-
+    public T mPresenter;
+    public E mModel;
+    public RxManager mRxManager;
     @Override
     protected void onCreateViewLazy(Bundle bundle) {
         view = View.inflate(getContext(), R.layout.fragment_base,null);
         setContentView(view);
         initStatusLayout();
+        mRxManager=new RxManager();
         ButterKnife.bind(this, getContentView());
+        mPresenter = TUtil.getT(this, 0);
+        mModel= TUtil.getT(this,1);
+        if(mPresenter!=null){
+            mPresenter.mContext=this.getActivity();
+        }
+        initPresenter();
         onViewCreatedLazily(bundle);
     }
+
+    //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
+    public abstract void initPresenter();
 
     protected abstract int getLayoutId();
 
     protected abstract void onViewCreatedLazily(Bundle bundle);
-
 
     protected void initStatusLayout(){
         LinearLayout mainLinearLayout = (LinearLayout) view.findViewById(R.id.main_rl);
@@ -70,46 +83,21 @@ public abstract class BaseMvpLazyFragment<V extends BaseStatusView, P extends Ba
         mainLinearLayout.addView(statusLayoutManager.getRootLayout(),0);
         statusLayoutManager.showContent();
     }
-
-    @Override
-    public void processingDialog() {
-        ProgressDialogUtils.show(getActivity());
-    }
-
-    @Override
-    public void processingDialog(@StringRes int i) {
-        ProgressDialogUtils.show(getActivity(), i);
-    }
-
-    @Override
-    public void dismissProcessingDialog() {
-        ProgressDialogUtils.dismiss();
-    }
-
     /**
      * 加载错误重试
      */
     protected abstract void onRetryClick();
 
-    private CompositeSubscription compositeSubscription;
+    protected abstract BasePresenter getCurrentPersenter(); //获取当前的业务处理类
 
-    /**
-     * @param subscription will be unsubscribed until fragment ui destroyed.
-     */
-    protected void addViewSubscription(Subscription subscription) {
-        if (compositeSubscription == null) {
-            compositeSubscription = new CompositeSubscription();
-        }
-        compositeSubscription.add(subscription);
-    }
+
 
     @Override
     public void onDestroyViewLay() {
         super.onDestroyViewLay();
         ButterKnife.unbind(this);
-        if (compositeSubscription != null && compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
-        }
+        if (mPresenter != null)
+            mPresenter.onDestroy();
+        mRxManager.clear();
     }
 }
-

@@ -3,7 +3,7 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.MultiplePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.MultipleView;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basewithoutmodel.BaseStatusMvpActivity;
 
 /**
  * 作者：quzongyang

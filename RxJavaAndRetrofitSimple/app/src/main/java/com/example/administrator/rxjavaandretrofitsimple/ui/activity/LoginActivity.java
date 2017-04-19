@@ -15,7 +15,7 @@ import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.LoginPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.LoginView;
 import com.example.administrator.rxjavaandretrofitsimple.rxbus.RxBus;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusMvpActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basewithoutmodel.BaseStatusMvpActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 

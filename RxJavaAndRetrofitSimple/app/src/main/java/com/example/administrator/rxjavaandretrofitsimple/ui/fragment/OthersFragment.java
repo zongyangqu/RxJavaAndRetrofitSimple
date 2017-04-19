@@ -11,7 +11,8 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.activity.HistoryToda
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.JokeActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.LoginActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WeChatActivity;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseModelFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WeatherActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp.BaseModelFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 
 import butterknife.Bind;
@@ -41,6 +42,8 @@ public class OthersFragment extends BaseModelFragment {
     TextView tvMultiple;
     @Bind(R.id.tvWeChat)
     TextView tvWeChat;
+    @Bind(R.id.tvWeather)
+    TextView tvWeather;
     private Observable<User> observableUserLogin;//监听登录界面发送的用户信息对象
     @Override
     protected int getLayoutId() {
@@ -83,7 +86,7 @@ public class OthersFragment extends BaseModelFragment {
 
     }
 
-    @OnClick({R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin,R.id.tvMultiple,R.id.tvWeChat})
+    @OnClick({R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin,R.id.tvMultiple,R.id.tvWeChat,R.id.tvWeather})
     public void onViewClick(View view){
         switch (view.getId()){
             case R.id.tvJoke:
@@ -100,6 +103,9 @@ public class OthersFragment extends BaseModelFragment {
                 break;
             case R.id.tvWeChat:
                 WeChatActivity.startAction(getActivity());
+                break;
+            case R.id.tvWeather:
+                WeatherActivity.startAction(getActivity());
                 break;
         }
     }

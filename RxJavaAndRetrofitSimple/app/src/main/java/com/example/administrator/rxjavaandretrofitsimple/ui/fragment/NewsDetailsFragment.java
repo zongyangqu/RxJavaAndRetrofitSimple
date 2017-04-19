@@ -3,7 +3,6 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.webkit.WebViewClient;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.api.ApiManager;
@@ -12,7 +11,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.New
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsDetailsView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WebClientActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.NewsAdapter;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseMvpLazyFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basewithoutmodel.BaseMvpLazyFragment;
 
 import butterknife.Bind;
 

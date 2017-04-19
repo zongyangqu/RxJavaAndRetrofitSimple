@@ -91,6 +91,8 @@
 
         <activity android:name=".ui.activity.PhotosDetailActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.WeatherActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

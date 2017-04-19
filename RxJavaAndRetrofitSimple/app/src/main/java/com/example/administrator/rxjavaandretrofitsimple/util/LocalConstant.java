@@ -16,6 +16,8 @@ public class LocalConstant {
     public static final String JOKE_REQURST_KAY =  "379618956b7f04290922c73c27a2feb6";
     //微信精选接口KEY
     public static final String WECHAT_REQURST_KAY =  "5c6868ae0010858fab351ac83921d9b3";
+    //聚合数据天气接口KEY
+    public static final String WEATHER_REQURST_KAY =  "5e1fbae0830c3ea5b883ef4d69114999";
     //分数默认显示数量
     public static final int DEFAULT_PAGE =  10;
     //分数默认显示数量
@@ -29,12 +31,7 @@ public class LocalConstant {
     public static final String REQUESTENTERTAINMENTNEWS =  "yule";
     public static final String REQUESTMILITARYNEWS =  "junshi";
 
-
-
-    public static final String WEB_URL = "WEB_URL";
     public static final String NEWSENTITY = "NEWSENTITY";
-    public static final String COVER_SITE_TITLE = "COVER_SITE_TITLE";
-    public static final String WEBVIEW_TITLE = "WEBVIEW_TITLE";
 
     public static final String PHOTO_DETAIL = "photo_detail";
 

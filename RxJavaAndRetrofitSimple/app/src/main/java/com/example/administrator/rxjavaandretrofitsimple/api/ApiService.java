@@ -4,6 +4,7 @@ import com.example.administrator.rxjavaandretrofitsimple.bean.JokeResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.NewsResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.PhotoViewResponse;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeChatResponse;
+import com.example.administrator.rxjavaandretrofitsimple.bean.WeatherResponse;
 
 import java.util.Map;
 
@@ -60,7 +61,8 @@ public interface ApiService {
     Observable<PhotoViewResponse> getPhotoList(
             @Header("Cache-Control") String cacheControl, @Path("size") int size, @Path("page") int page);
 
-
+    @GET("/onebox/weather/query")
+    Observable<WeatherResponse> getWeatherReport(@Query("cityname")String cityname, @Query("key")String key);
 
 
 

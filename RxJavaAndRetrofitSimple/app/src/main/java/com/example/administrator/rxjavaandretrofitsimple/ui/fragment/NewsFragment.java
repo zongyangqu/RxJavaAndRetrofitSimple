@@ -12,7 +12,7 @@ import com.android.qzy.library.viewpagertransform.DrawerTransformer;
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.presenter.NewsPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStatus.view.NewsView;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseMvpLazyFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basewithoutmodel.BaseMvpLazyFragment;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 
 import java.util.ArrayList;

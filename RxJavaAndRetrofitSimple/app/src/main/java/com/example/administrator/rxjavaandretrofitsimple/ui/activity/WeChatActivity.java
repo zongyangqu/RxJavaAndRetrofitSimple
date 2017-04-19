@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.WeChatPre
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.WeChatView;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.WeChatAdapter;
-import com.example.administrator.rxjavaandretrofitsimple.ui.base.BaseStatusModelActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp.BaseStatusModelActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;

@@ -36,7 +36,12 @@ public class HostType {
     public static final int JUHE_DATE_NET_INTERFACE = 4;
 
     /**
-     * 聚合数据接口
+     * 聚合数据笑话接口
      */
     public static final int JUHE_DATE_NET_INTERFACEJOKE = 5;
+
+    /**
+     * 聚合数据天气接口
+     */
+    public static final int JUHE_DATE_NET_INTERFACEWEATHER = 6;
 }
