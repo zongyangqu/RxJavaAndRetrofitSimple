@@ -14,12 +14,18 @@ import com.example.administrator.rxjavaandretrofitsimple.mvp.model.PhotoViewMode
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.PhotoViewPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.view.PhotoView;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.contract.PhotoListContract;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.model.PhotoModel;
+import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.presenter.PhotoPresenter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.PhotosDetailActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.PhotoViewAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp.BaseModelFragment;
+import com.example.administrator.rxjavaandretrofitsimple.ui.base.basestandardmvp.BaseStandardMVPFragment;
 import com.example.administrator.rxjavaandretrofitsimple.ui.utils.SpacesItemDecoration;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
+
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -31,7 +37,7 @@ import butterknife.Bind;
  * 类描述：微信精选
  */
 
-public class PhotoFragment extends BaseModelFragment implements PhotoView {
+public class PhotoFragment extends BaseStandardMVPFragment<PhotoPresenter,PhotoModel> implements PhotoListContract.View{
 
     @Bind(R.id.rcvPhoto)
     RecyclerView rcvPhoto;
@@ -42,16 +48,36 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
     private PhotoViewPresenter _presenter;
 
     @Override
-    public void providePhotoView(PhotoViewResponse response, boolean isLoadMore) {
+    public void showLoading(String title) {
+        ProgressDialogUtils.show(getActivity(),title);
+    }
+
+    @Override
+    public void stopLoading() {
         springview.onFinishFreshAndLoad();
+        ProgressDialogUtils.dismiss();
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+        statusLayoutManager.showNetWorkError();
+    }
+
+    @Override
+    public void returnPhotosListData(List<PhotoViewResponse.PhotoViewBean> photoGirls,boolean isLoadMore) {
         statusLayoutManager.showContent();
+        springview.onFinishFreshAndLoad();
         if (isLoadMore) {//加载更多
-            adapter.addData(response.results);
+            adapter.addData(photoGirls);
         } else {//刷新
-            adapter.setData(response.results);
+            adapter.setData(photoGirls);
         }
     }
 
+    @Override
+    public void initPresenter() {
+        mPresenter.setVM(this,mModel);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -76,9 +102,6 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
         rcvPhoto.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         SpacesItemDecoration decoration=new SpacesItemDecoration(18);
         rcvPhoto.addItemDecoration(decoration);
-        _presenter = new PhotoViewPresenter();
-        _presenter.attachView(this);
-        _presenter.attachModel(new PhotoViewModel());
         refreshPhotoView(1,false);
     }
 
@@ -88,7 +111,8 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
      * @param isLoadMore  是否是上拉加载更多
      */
     public void refreshPhotoView(int currentPage, boolean isLoadMore) {
-        _presenter.getPhoto(ApiManager.getCacheControl(), LocalConstant.DEFAULT_MAXPAGE, currentPage, isLoadMore);
+        mPresenter.getPhotosListDataRequest(LocalConstant.DEFAULT_MAXPAGE, currentPage, isLoadMore);
+        //_presenter.getPhoto(ApiManager.getCacheControl(), LocalConstant.DEFAULT_MAXPAGE, currentPage, isLoadMore);
     }
 
     public void setListener() {
@@ -118,33 +142,6 @@ public class PhotoFragment extends BaseModelFragment implements PhotoView {
     @Override
     protected BasePresenter getCurrentPersenter() {
         return new PhotoViewPresenter();
-    }
-
-
-    @Override
-    public void displayEmptyPage() {
-        statusLayoutManager.showEmptyData();
-    }
-
-
-    @Override
-    public void updateView(PhotoViewResponse response) {
-    }
-
-    @Override
-    public void hideLoadingView() {
-        springview.onFinishFreshAndLoad();
-        ProgressDialogUtils.dismiss();
-    }
-
-    @Override
-    public void startLoadingView() {
-        ProgressDialogUtils.show(getActivity());
-    }
-
-    @Override
-    public void showError(String errMsg) {
-        statusLayoutManager.showNetWorkError();
     }
 
 

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class PhotoPresenter extends PhotoListContract.Presenter {
     @Override
-    public void getPhotosListDataRequest(int size, int page) {
+    public void getPhotosListDataRequest(int size, int page, final boolean isLoadMore) {
         mRxManage.add(mModel.getPhotosListData(size,page).subscribe(new RxSubscriber<List<PhotoViewResponse.PhotoViewBean>>(mContext,false) {
             @Override
             public void onStart() {
@@ -26,7 +26,7 @@ public class PhotoPresenter extends PhotoListContract.Presenter {
             }
             @Override
             protected void _onNext(List<PhotoViewResponse.PhotoViewBean> photoGirls) {
-                mView.returnPhotosListData(photoGirls);
+                mView.returnPhotosListData(photoGirls,isLoadMore);
                 mView.stopLoading();
             }
 

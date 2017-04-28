@@ -26,10 +26,10 @@ public interface PhotoListContract {
 
     interface View extends BaseStandardView {
         //返回获取的图片
-        void returnPhotosListData(List<PhotoViewResponse.PhotoViewBean> photoGirls);
+        void returnPhotosListData(List<PhotoViewResponse.PhotoViewBean> photoGirls,boolean isLoadMore);
     }
     abstract static class Presenter extends BaseStandardPresenter<View, Model> {
         //发起获取图片请求
-        public abstract void getPhotosListDataRequest(int size, int page);
+        public abstract void getPhotosListDataRequest(int size, int page,boolean isLoadMore);
     }
 }

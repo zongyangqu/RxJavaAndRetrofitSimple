@@ -35,9 +35,9 @@ import butterknife.Bind;
 
 public class VideoFragment extends BaseStandardMVPFragment<PhotoPresenter,PhotoModel> implements PhotoListContract.View{
 
-    @Bind(R.id.rcvPhoto)
+    /*@Bind(R.id.rcvPhoto)
     RecyclerView rcvPhoto;
-    PhotoViewAdapter adapter;
+    PhotoViewAdapter adapter;*/
 
     @Override
     public void initPresenter() {
@@ -62,9 +62,9 @@ public class VideoFragment extends BaseStandardMVPFragment<PhotoPresenter,PhotoM
     }
 
     @Override
-    public void returnPhotosListData(List<PhotoViewResponse.PhotoViewBean> photoGirls) {
+    public void returnPhotosListData(List<PhotoViewResponse.PhotoViewBean> photoGirls,boolean isLoadMore) {
         statusLayoutManager.showContent();
-        adapter.setData(photoGirls);
+
     }
 
     @Override
@@ -74,25 +74,13 @@ public class VideoFragment extends BaseStandardMVPFragment<PhotoPresenter,PhotoM
 
     @Override
     protected void onViewCreatedLazily(Bundle bundle) {
-        adapter = new PhotoViewAdapter(getActivity());
-        rcvPhoto.setAdapter(adapter);
-        adapter.setOnItemClickListener(new PhotoViewAdapter.OnItemClickListener() {
-            @Override
-            public void onImageViewClick(PhotoViewResponse.PhotoViewBean photoViewBean) {
-                PhotosDetailActivity.startAction(getActivity(),photoViewBean.url);
-            }
-        });
-        rcvPhoto.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        SpacesItemDecoration decoration=new SpacesItemDecoration(18);
-        rcvPhoto.addItemDecoration(decoration);
-        refreshPhotoView();
+
     }
 
     /**
      * 调用接口
      */
-    public void refreshPhotoView() {
-        mPresenter.getPhotosListDataRequest(20, 1);
+    public void refreshPhotoView(boolean isLoadMore) {
     }
 
 

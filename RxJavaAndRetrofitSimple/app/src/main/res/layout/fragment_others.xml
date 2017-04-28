@@ -71,5 +71,15 @@
         android:gravity="center"
         android:text="天气预报"/>
 
+    <TextView
+        android:id="@+id/tvDataBinding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="DataBinding"/>
+
 
 </LinearLayout>
