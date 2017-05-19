@@ -96,6 +96,9 @@
 
         <activity android:name=".ui.activity.DataBindingActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.activity.PDFActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

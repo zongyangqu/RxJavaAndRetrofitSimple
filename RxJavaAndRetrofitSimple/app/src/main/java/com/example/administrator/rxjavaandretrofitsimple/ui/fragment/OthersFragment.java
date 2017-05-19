@@ -3,14 +3,15 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.administrator.rxjavaandretrofitsimple.R;
 import com.example.administrator.rxjavaandretrofitsimple.mvp.presenter.base.BasePresenter;
 import com.example.administrator.rxjavaandretrofitsimple.rxbus.RxBus;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.DataBindingActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.HistoryTodayActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.JokeActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.LoginActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.MultipleActivity;
+import com.example.administrator.rxjavaandretrofitsimple.ui.activity.PDFActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WeChatActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.activity.WeatherActivity;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.basenormalmvp.BaseModelFragment;
@@ -48,6 +49,8 @@ public class OthersFragment extends BaseModelFragment {
     TextView tvWeather;
     @Bind(R.id.tvDataBinding)
     TextView tvDataBinding;
+    @Bind(R.id.tvPDF)
+    TextView tvPDF;
     private Observable<User> observableUserLogin;//监听登录界面发送的用户信息对象
     @Override
     protected int getLayoutId() {
@@ -90,7 +93,7 @@ public class OthersFragment extends BaseModelFragment {
 
     }
 
-    @OnClick({R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin,R.id.tvMultiple,R.id.tvWeChat,R.id.tvWeather,R.id.tvDataBinding})
+    @OnClick({R.id.tvPDF,R.id.tvJoke,R.id.tvHistoryToday,R.id.tvLogin,R.id.tvMultiple,R.id.tvWeChat,R.id.tvWeather,R.id.tvDataBinding})
     public void onViewClick(View view){
         switch (view.getId()){
             case R.id.tvJoke:
@@ -110,10 +113,13 @@ public class OthersFragment extends BaseModelFragment {
                 WeChatActivity.startAction(getActivity());
                 break;
             case R.id.tvDataBinding:
-                WeatherActivity.startAction(getActivity());
+                DataBindingActivity.startAction(getActivity());
                 break;
             case R.id.tvWeather:
                 WeatherActivity.startAction(getActivity());
+                break;
+            case R.id.tvPDF:
+                PDFActivity.startAction(getActivity());
                 break;
         }
     }

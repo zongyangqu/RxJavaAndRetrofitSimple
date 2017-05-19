@@ -2,20 +2,36 @@ package com.example.administrator.rxjavaandretrofitsimple.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.rxjavaandretrofitsimple.R;
+import com.example.administrator.rxjavaandretrofitsimple.bean.Food;
+import com.example.administrator.rxjavaandretrofitsimple.bean.UserEntity;
 import com.example.administrator.rxjavaandretrofitsimple.bean.WeatherResponse;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.contract.WeatherContract;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.model.WeatherModel;
 import com.example.administrator.rxjavaandretrofitsimple.mvpStandard.presenter.WeatherPresenter;
+import com.example.administrator.rxjavaandretrofitsimple.ui.adapter.MyBaseAdapter;
 import com.example.administrator.rxjavaandretrofitsimple.ui.base.basestandardmvp.BaseStandardMVPActivity;
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.LocalConstant;
 import com.example.administrator.rxjavaandretrofitsimple.util.ProgressDialogUtils;
 
+import java.io.IOException;
+import java.util.List;
+
 import butterknife.Bind;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * 作者：quzongyang
@@ -24,17 +40,22 @@ import butterknife.Bind;
  *
  * 类描述：
  */
+public class DataBindingActivity extends AppCompatActivity{
 
-public class DataBindingActivity extends BaseStandardMVPActivity<WeatherPresenter,WeatherModel> implements WeatherContract.View{
+    public static void startAction(Activity activity) {
+        Intent intent = new Intent(activity, DataBindingActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in,
+                R.anim.fade_out);
+    }
+
+}
+
+/*public class DataBindingActivity extends BaseStandardMVPActivity<WeatherPresenter,WeatherModel> implements WeatherContract.View{
 
     @Bind(R.id.tvCityName)
     TextView tvCityName;
 
-    /**
-     * 入口
-     *
-     * @param activity
-     */
     public static void startAction(Activity activity) {
         Intent intent = new Intent(activity, DataBindingActivity.class);
         activity.startActivity(intent);
@@ -93,5 +114,5 @@ public class DataBindingActivity extends BaseStandardMVPActivity<WeatherPresente
     protected Activity getActivity() {
         return this;
     }
-}
+}*/
 
