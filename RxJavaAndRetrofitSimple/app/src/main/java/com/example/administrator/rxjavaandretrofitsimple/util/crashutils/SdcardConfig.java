@@ -19,7 +19,7 @@ public class SdcardConfig {
 	/**
 	 * 根目录
 	 */
-	public static final String ROOT_FOLDER = SDCARD_FOLDER + "/crashdemo/";
+	public static final String ROOT_FOLDER = SDCARD_FOLDER + "/crashlogs/";
 
 	/**
 	 * 日志目录
