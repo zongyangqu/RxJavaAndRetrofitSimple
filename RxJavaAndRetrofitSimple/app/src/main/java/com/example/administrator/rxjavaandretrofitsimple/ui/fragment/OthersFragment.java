@@ -97,6 +97,9 @@ public class OthersFragment extends BaseModelFragment {
     public void onViewClick(View view){
         switch (view.getId()){
             case R.id.tvJoke:
+                // 动手制造异常
+                String str = null;
+                String[] split = str.split(",");
                 JokeActivity.startAction(getActivity());
                 break;
             case R.id.tvHistoryToday:

@@ -1,10 +1,15 @@
 package com.example.administrator.rxjavaandretrofitsimple.application;
 
 import android.app.Application;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.LruCache;
+
+import com.example.administrator.rxjavaandretrofitsimple.util.crashutils.AppUncaughtExceptionHandler;
+import com.example.administrator.rxjavaandretrofitsimple.util.crashutils.SdcardConfig;
 
 import greendao.DaoMaster;
 import greendao.DaoSession;
@@ -23,7 +28,11 @@ public class BaseApplication extends Application {
         //setupDatabase();
         //初始化数据库
         DbCore.init(this);
-        //CrashHandler.getInstance().init(getApplicationContext());
+        // 初始化文件目录
+        SdcardConfig.getInstance().initSdcard();
+        // 捕捉异常
+        AppUncaughtExceptionHandler crashHandler = AppUncaughtExceptionHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
     /**
      * 配置数据库
@@ -72,6 +81,30 @@ public class BaseApplication extends Application {
      */
     public static LruCache<String, Bitmap> getMainLrucache() {
         return mLruCache;
+    }
+
+    /**
+     * 获取自身App安装包信息
+     *
+     * @return
+     */
+    public PackageInfo getLocalPackageInfo() {
+        return getPackageInfo(getPackageName());
+    }
+
+    /**
+     * 获取App安装包信息
+     *
+     * @return
+     */
+    public PackageInfo getPackageInfo(String packageName) {
+        PackageInfo info = null;
+        try {
+            info = getPackageManager().getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return info;
     }
 
 }

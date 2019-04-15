@@ -26,6 +26,10 @@ import com.example.administrator.rxjavaandretrofitsimple.ui.fragment.VideoFragme
 import com.example.administrator.rxjavaandretrofitsimple.util.AbToastUtil;
 import com.example.administrator.rxjavaandretrofitsimple.util.AppManager;
 import com.example.administrator.rxjavaandretrofitsimple.util.DownLoaderAsyncTask;
+import com.example.administrator.rxjavaandretrofitsimple.util.permission.PermissionChecker;
+import com.example.administrator.rxjavaandretrofitsimple.util.permission.PermissionRequester;
+import com.example.administrator.rxjavaandretrofitsimple.util.permission.annotation.PermissionDenied;
+import com.example.administrator.rxjavaandretrofitsimple.util.permission.annotation.PermissionGranted;
 
 
 import java.util.ArrayList;
@@ -77,10 +81,26 @@ public class MainActivity extends BaseNoNetworkActivity {
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
+        requestLocationPermissions();
+        requestWritePermissions();
         initTitleBar();
         initFragment(savedInstanceState);
         initTab();
         initAdvData();
+    }
+
+    private void requestLocationPermissions(){
+        PermissionRequester.build().attach(this)
+                .permissions(PermissionChecker.Permissions.LOCATION)
+                .requestCode(PermissionChecker.PermissionRequestCode.LOCATION)
+                .request();
+    }
+
+    private void requestWritePermissions(){
+        PermissionRequester.build().attach(this)
+                .permissions(PermissionChecker.Permissions.STORAGE_WRITE_READ)
+                .requestCode(PermissionChecker.PermissionRequestCode.STORAGE_WRITE_READ)
+                .request();
     }
 
 
@@ -206,6 +226,24 @@ public class MainActivity extends BaseNoNetworkActivity {
             ExitApp();
         }
         return false;
+    }
+
+
+    @PermissionGranted(requestCode = PermissionChecker.PermissionRequestCode.LOCATION)
+    public void onLocationPermissionGranted() {
+    }
+
+    @PermissionGranted(requestCode = PermissionChecker.PermissionRequestCode.STORAGE_WRITE_READ)
+    public void onWritePermissionGranted() {
+    }
+
+
+    @PermissionDenied(requestCode = PermissionChecker.PermissionRequestCode.LOCATION)
+    public void onLocationPermissionDenied(String info) {
+    }
+
+    @PermissionDenied(requestCode = PermissionChecker.PermissionRequestCode.STORAGE_WRITE_READ)
+    public void onWritePermissionDenied(String info) {
     }
 
 
